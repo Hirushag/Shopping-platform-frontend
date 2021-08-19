@@ -1,0 +1,80 @@
+<div class="row no-gutters align-items-center bg-danger-light h-100">
+  <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+  <div class="block-center mt-4 wd-xl border">
+    <!-- START panel-->
+    <div class="card card-flat">
+      <div class="card-header text-center bg-danger"><h3>Easy Shop</h3></div>
+      <div class="card-body">
+        <p class="text-center text-dark">SIGN IN TO CONTINUE.</p>
+        <form
+          [formGroup]="valForm"
+          class="form-validate form-horizontal"
+          (submit)="submitForm($event, valForm.value)"
+          novalidate=""
+        >
+          <fieldset>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Username"
+                      formControlName="username"
+                      [formControl]="valForm.controls['username']"
+                    />
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        valForm.controls['username'].hasError('required') &&
+                        (valForm.controls['username'].dirty ||
+                          valForm.controls['username'].touched)
+                      "
+                      >Username is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <input
+                      class="form-control"
+                      type="password"
+                      placeholder="Password"
+                      formControlName="password"
+                      [formControl]="valForm.controls['password']"
+                    />
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        valForm.controls['password'].hasError('required') &&
+                        (valForm.controls['password'].dirty ||
+                          valForm.controls['password'].touched)
+                      "
+                      >Password is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+          <div class="card-footer text-center">
+            <button class="btn btn-success btn-block" type="submit">
+              Login
+            </button>
+          </div>
+        </form>
+        <a class="btn btn-block btn-default" [routerLink]="'/register'"
+          >Register Now</a
+        >
+      </div>
+    </div>
+    <!-- END panel-->
+  </div>
+</div>

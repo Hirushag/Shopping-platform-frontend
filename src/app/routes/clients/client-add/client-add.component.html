@@ -1,0 +1,181 @@
+<div class="content-heading mb-2">Register</div>
+<toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+
+<div class="row" *ngIf="LoadUI == false">
+  <div class="col-lg-12 no-gutters mt-5">
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <div class="ball-grid-pulse">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <h2 class="text-muted">Loading interfaces...</h2>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="LoadUI == true">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-default">
+        <div class="card-body">
+          <form
+            [formGroup]="valForm"
+            class="form-validate form-horizontal"
+            (submit)="submitForm($event, valForm.value)"
+            novalidate=""
+          >
+            <div class="row">
+              <div class="col-sm-12">
+                <fieldset>
+                  <h4>Customer's General Information</h4>
+                </fieldset>
+                <fieldset>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label text-right"
+                          >Frist Name</label
+                        >
+                        <div class="col-sm-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            formControlName="firstname"
+                            [formControl]="valForm.controls['firstname']"
+                          />
+                          <span
+                            class="text-danger"
+                            *ngIf="
+                              valForm.controls['firstname'].hasError(
+                                'required'
+                              ) &&
+                              (valForm.controls['firstname'].dirty ||
+                                valForm.controls['firstname'].touched)
+                            "
+                            >This field is required</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label text-right"
+                          >Last Name</label
+                        >
+                        <div class="col-sm-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            formControlName="lastname"
+                            [formControl]="valForm.controls['lastname']"
+                          />
+                          <span
+                            class="text-danger"
+                            *ngIf="
+                              valForm.controls['lastname'].hasError(
+                                'required'
+                              ) &&
+                              (valForm.controls['lastname'].dirty ||
+                                valForm.controls['lastname'].touched)
+                            "
+                            >This field is required</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label text-right"
+                          >Username</label
+                        >
+                        <div class="col-sm-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            formControlName="username"
+                            [formControl]="valForm.controls['username']"
+                          />
+                          <span
+                            class="text-danger"
+                            *ngIf="
+                              valForm.controls['username'].hasError(
+                                'required'
+                              ) &&
+                              (valForm.controls['username'].dirty ||
+                                valForm.controls['username'].touched)
+                            "
+                            >This field is required</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label text-right"
+                          >Password</label
+                        >
+                        <div class="col-sm-9">
+                          <input
+                            class="form-control"
+                            type="password"
+                            formControlName="password"
+                            [formControl]="valForm.controls['password']"
+                          />
+                          <span
+                            class="text-danger"
+                            *ngIf="
+                              valForm.controls['password'].hasError(
+                                'required'
+                              ) &&
+                              (valForm.controls['password'].dirty ||
+                                valForm.controls['password'].touched)
+                            "
+                            >This field is required</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <button class="btn btn-primary" type="submit">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="sysuser?.userlevel < 6">
+    <div class="col-md-12">
+      <div class="card card-default">
+        <div class="card-body">
+          <div class="col-md-12 text-center">
+            <alert type="danger">
+              <p class="lead">
+                <em class="fa fa-warning"></em> You DO NOT have permission to
+                perform this action !!!
+              </p>
+            </alert>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
