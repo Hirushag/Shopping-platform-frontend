@@ -1,0 +1,131 @@
+<div class="row no-gutters align-items-center bg-danger-light h-100">
+  <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+  <div class="block-center wd-xl border">
+    <!-- START panel-->
+    <div class="card">
+      <div class="card-header text-center bg-danger"><h3>Easy Shop</h3></div>
+      <div class="card-body">
+        <p class="text-center text-dark">SIGN UP TO CONTINUE.</p>
+        <form
+          [formGroup]="valForm"
+          class="form-validate form-horizontal"
+          (submit)="submitForm($event, valForm.value)"
+          novalidate=""
+        >
+          <fieldset>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Firstname"
+                      formControlName="firstname"
+                      [formControl]="valForm.controls['firstname']"
+                    />
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        valForm.controls['firstname'].hasError('required') &&
+                        (valForm.controls['firstname'].dirty ||
+                          valForm.controls['firstname'].touched)
+                      "
+                      >First Name is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Lastname"
+                      formControlName="lastname"
+                      [formControl]="valForm.controls['lastname']"
+                    />
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        valForm.controls['lastname'].hasError('required') &&
+                        (valForm.controls['lastname'].dirty ||
+                          valForm.controls['lastname'].touched)
+                      "
+                      >last Name is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Username"
+                      formControlName="username"
+                      [formControl]="valForm.controls['username']"
+                    />
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        valForm.controls['username'].hasError('required') &&
+                        (valForm.controls['username'].dirty ||
+                          valForm.controls['username'].touched)
+                      "
+                      >Username is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group row">
+                  <div class="col-sm-12">
+                    <input
+                      class="form-control"
+                      type="password"
+                      placeholder="Password"
+                      formControlName="password"
+                      [formControl]="valForm.controls['password']"
+                    />
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        valForm.controls['password'].hasError('required') &&
+                        (valForm.controls['password'].dirty ||
+                          valForm.controls['password'].touched)
+                      "
+                      >Passwordis required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="card-footer text-center">
+            <button class="btn btn-primary" type="submit">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- END panel-->
+  </div>
+</div>

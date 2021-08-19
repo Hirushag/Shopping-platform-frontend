@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+//== Vendor
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-brands.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-regular.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
+@import "~simple-line-icons/css/simple-line-icons.css";
+@import "~spinkit/css/spinkit.css";
+@import "~loaders.css/loaders.css";
+
+//== Bootstrap
+@import "./app/shared/styles/bootstrap.scss";
+//== Application
+@import "./app/shared/styles/app.scss";
+
+//== toaster notifications
+@import "../node_modules/angular2-toaster/toaster";
+
+//== sweet alerts
+@import "../node_modules/sweetalert/dist/sweetalert.css";
+
+//== PrimeNg
+@import "../node_modules/primeicons/primeicons.css";
+@import "../node_modules/primeng/resources/primeng.min.css";
+// @import '../node_modules/primeng/resources/themes/pepper-grinder/theme.css';
+@import "../node_modules/primeng/resources/themes/nova-light/theme.css";
