@@ -1,31 +1,41 @@
-import { TestBed } from '@angular/core/testing';
+/* tslint:disable:no-unused-variable */
+
+import { TestBed, async} from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { TranslateModule } from '@ngx-translate/core';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  });
+import { CoreModule } from './core/core.module';
+import { LayoutModule } from './layout/layout.module';
+import { SharedModule } from './shared/shared.module';
+import { RoutesModule } from './routes/routes.module';
+import { APP_BASE_HREF } from '@angular/common';
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+describe('App: Ng2angle', () => {
+    beforeEach(() => {
 
-  it(`should have as title 'shopping-platform-frontend'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('shopping-platform-frontend');
-  });
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('shopping-platform-frontend app is running!');
-  });
+        TestBed.configureTestingModule({
+            declarations: [
+                AppComponent
+            ],
+            imports: [
+                TranslateModule.forRoot(),
+                CoreModule,
+                LayoutModule,
+                SharedModule,
+                RoutesModule
+            ],
+            providers: [
+                { provide: APP_BASE_HREF, useValue: '/' }
+            ]
+        });
+    });
+
+    it('should create the app', async(() => {
+        let fixture = TestBed.createComponent(AppComponent);
+        let app = fixture.debugElement.componentInstance;
+        expect(app).toBeTruthy();
+    }));
+
 });
