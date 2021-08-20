@@ -1,4 +1,4 @@
-<div class="content-heading">Add System User</div>
+<div class="content-heading">Edit System User</div>
 <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
 <div class="row">
   <div class="col-sm-12">
@@ -113,25 +113,23 @@
               <div class="col-sm-6">
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label text-right"
-                    >Store</label
+                  >Username</label
                   >
                   <div class="col-sm-9">
-                    <select
+                    <input
                       class="form-control"
-                      formControlName="storecode"
-                      [formControl]="valForm.controls['storecode']"
-                    >
-                      <option value="null" disabled>Please select</option>
-                      <option value="1">Independence Walk</option>
-                    </select>
+                      type="text"
+                      formControlName="username"
+                      [formControl]="valForm.controls['username']"
+                    />
                     <span
                       class="text-danger"
                       *ngIf="
-                        valForm.controls['storecode'].hasError('required') &&
-                        (valForm.controls['storecode'].dirty ||
-                          valForm.controls['storecode'].touched)
+                        valForm.controls['username'].hasError('required') &&
+                        (valForm.controls['username'].dirty ||
+                          valForm.controls['username'].touched)
                       "
-                      >This field is required</span
+                    >This field is required</span
                     >
                   </div>
                 </div>
@@ -139,7 +137,7 @@
               <div class="col-sm-6">
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label text-right"
-                    >UserLevel
+                  >UserLevel
                   </label>
                   <div class="col-sm-9">
                     <p-dropdown
@@ -165,13 +163,15 @@
                         (valForm.controls['userlevel'].dirty ||
                           valForm.controls['userlevel'].touched)
                       "
-                      >This field is required</span
+                    >This field is required</span
                     >
                   </div>
                 </div>
               </div>
             </div>
           </fieldset>
+
+
 
           <div class="card-footer text-center">
             <button class="btn btn-primary" type="submit">Update User</button>
