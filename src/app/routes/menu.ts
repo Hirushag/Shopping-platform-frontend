@@ -3,6 +3,12 @@ const headingMain = {
   heading: true,
 };
 
+const Payments = {
+  text: "Payments",
+  link: "/payments/summary",
+  icon: "icon-wallet",
+  userlevel: 6,
+};
 const Settings = {
   text: "Settings",
   link: "/settings/users/summary",
@@ -30,4 +36,11 @@ const Clients = {
   userlevel: 6,
 };
 
-export const menu = [headingMain, Clients, Settings];
+const cart = {
+  text: "CART",
+  link: "/cart/summary",
+  icon: "icon-basket-loaded",
+  userlevel: 1,
+};
+
+export const menu = [headingMain, cart, Clients,Payments, Settings];

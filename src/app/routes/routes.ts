@@ -13,9 +13,23 @@ export const routes = [
         loadChildren: "./settings/settings.module#SettingsModule",
       },
 
+            {
+        path: "clients",
+        loadChildren: "./clients/clients.module#ClientsModule",
+      },
+
       {
         path: "clients",
         loadChildren: "./clients/clients.module#ClientsModule",
+      },
+
+            {
+        path: "payments",
+        loadChildren: "./payments/payments.module#PaymentsModule",
+      },
+                 {
+        path: "cart",
+        loadChildren: "./cart/cart.module#CartModule",
       },
     ],
     canActivate: [AuthGuard],
