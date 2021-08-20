@@ -23,18 +23,11 @@
 </div>
 
 <div *ngIf="LoadUI == true">
-  <div class="row">
-    <div class="col-sm-12 ">
-      <div class="float-right">
-        <button class="mb-2 btn btn-outline-primary" type="button" [routerLink]="['/home']">Dashboard</button>
-      </div>
-    </div>
-  </div>
 
   <div class="container-fluid" *ngIf="sysuser?.userlevel >= 4">
     <div class="row">
-      <div class="col-md-12">
-        <button class="mb-2 btn btn-success" type="button" [routerLink]="['/settings/users/add']">
+      <div class="col-md-12 ">
+        <button class="mb-2 btn btn-lg btn-success mt-2" type="button" [routerLink]="['/settings/users/add']">
           Add System User
         </button>
       </div>
@@ -53,7 +46,7 @@
                 <div class="col-sm-6"><input class="form-control" type="text" autofocus #pw /></div>
                 <div class="col-sm-3">
                   <button class="btn btn-danger col-sm-6" type="button" (click)="resetpw(pw.value)">RESET</button>
-                  <button class="btn btn-warning col-sm-5 pull-right" type="button" (click)="resetreq = false">
+                  <button class="btn btn-warning col-sm-5 pull-right ml-1" type="button" (click)="resetreq = false">
                     CANCEL
                   </button>
                 </div>
@@ -105,11 +98,7 @@
                 ></p-sortIcon>
               </th>
             </tr>
-            <!-- <tr>
-                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                      <input *ngSwitchCase="'id'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)"
-                        [style.width]="col.filter_width">
-                  </tr> -->
+
           </ng-template>
           <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr [pSelectableRow]="rowData">
@@ -119,31 +108,24 @@
                 <div *ngSwitchCase="'lastname'">{{ rowData[col.field] }}</div>
                 <div *ngSwitchCase="'username'">{{ rowData[col.field] }}</div>
                 <div *ngSwitchCase="'userlevel'">
-                  <span class="badge badge-primary" *ngIf="rowData.userlevel == 0">EXECUTIVE</span>
-                  <span class="badge badge-primary" *ngIf="rowData.userlevel == 3">KITCHEN STAFF</span>
-                  <span class="badge badge-primary" *ngIf="rowData.userlevel == 4">CASHIER</span>
-                  <span class="badge badge-warning" *ngIf="rowData.userlevel == 6">STORE MANAGER</span>
+                  <span class="badge badge-primary" *ngIf="rowData.userlevel == 1">CUSTOMER</span>
+                  <span class="badge badge-primary" *ngIf="rowData.userlevel == 10">ADMIN</span>
+                  <span class="badge badge-warning" *ngIf="rowData.userlevel == 5">STORE MANAGER</span>
                   <span class="badge badge-danger" *ngIf="rowData.userlevel == 8">SUPER ADMIN</span>
                 </div>
 
                 <div *ngSwitchCase="'actions'">
                   <div class="row no-gutters">
                     <div class="col-md-12 pr-1">
-                      <button class="btn btn-warning" routerLink="/settings/users/edit/{{ rowData.id }}">Edit</button>
+                      <button class="btn btn-warning" routerLink="/settings/users/edit/{{ rowData.id }}">Edit User</button>
                       <button
                         class="btn btn-danger ml-2"
                         (click)="resetrequest(rowData.id, rowData.firstname, rowData.lastname)"
                         *ngIf="sysuser?.userlevel >= 4"
                       >
-                        Reset
+                        Reset Password
                       </button>
-                      <button
-                        class="btn btn-danger ml-2"
-                        (click)="resetrequest(rowData.id, rowData.firstname, rowData.lastname)"
-                        *ngIf="sysuser?.userlevel >= 4"
-                      >
-                        Disable
-                      </button>
+
                     </div>
                   </div>
                 </div>

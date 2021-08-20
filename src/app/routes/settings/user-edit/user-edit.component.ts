@@ -26,7 +26,7 @@ const swal = require("sweetalert");
 export class UserEditComponent implements OnInit {
   sysuser: any;
   LoadUI: boolean = false;
-  user: User;
+  user: any;
 
   roles_list: SelectItem[] = [];
   valForm: FormGroup;
@@ -51,7 +51,7 @@ export class UserEditComponent implements OnInit {
     this.valForm = fb.group({
       firstname: [null, Validators.required],
       lastname: [null, Validators.required],
-      storecode: [null, Validators.required],
+      username: [null, Validators.required],
       userlevel: [null, Validators.required],
     });
   }
@@ -67,10 +67,12 @@ export class UserEditComponent implements OnInit {
       this.userservice.findStaffUser(this.id).subscribe((data) => {
         if (data) {
           // Do if true
+
+
           this.user = data;
           this.valForm.patchValue({ firstname: this.user.firstname });
           this.valForm.patchValue({ lastname: this.user.lastname });
-          this.valForm.patchValue({ storecode: this.user.storecode });
+          this.valForm.patchValue({ username: this.user.username });
           this.valForm.patchValue({ userlevel: this.user.userlevel });
         }
       });
@@ -97,6 +99,8 @@ export class UserEditComponent implements OnInit {
     if (this.valForm.valid) {
       value.id = this.id;
 
+
+      console.log(value)
       this.userservice.editUser(value).subscribe(
         (data) => {
           if (data.status) {
