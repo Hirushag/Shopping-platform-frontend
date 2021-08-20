@@ -1,0 +1,137 @@
+<toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+
+<div class="row" *ngIf="LoadUI == false">
+  <div class="col-lg-12 no-gutters mt-5">
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <div class="ball-grid-pulse">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <h2 class="text-muted">Loading interfaces...</h2>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="LoadUI == true">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="float-right">
+        <button
+          class="mb-2 mr-1 btn btn-outline-primary"
+          type="button"
+          [routerLink]="['/payments/summary']"
+        >
+          Payments
+        </button>
+        <button
+          class="mb-2 btn btn-outline-primary"
+          type="button"
+          [routerLink]="['/shopping/summary']"
+        >
+          Dashboard
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12" id="printreceipt">
+      <div class="mt-3 card padding-prints">
+        <div class="card-body">
+          <div class="col-sm-12 text-center printonly">
+            <h3>Payments</h3>
+            <hr />
+          </div>
+          <h3 class="text-right">PAYMENT# : {{ payment?.id }}</h3>
+          <hr />
+          <div class="row">
+            <div class="col-lg-12 col-sm-12">
+              <div class="row">
+                <div class="col-lg-4 col-sm-4 br pv">
+                  <div class="row">
+                    <div
+                      class="col-md-1 text-center visible-md visible-lg"
+                    ></div>
+                    <div class="col-md-11">
+                      <div class="clearfix">
+                        <h4>{{ payment?.user.firstname }}</h4>
+                        <h4>{{ payment?.user.lastname }}</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-sm-4 br pv">
+                  <div class="row">
+                    <div class="col-md-12 h4">
+                      <div class="clearfix">
+                        <p class="float-left">METHOD</p>
+                        <p class="float-right mr text-success">
+                          {{ payment?.method }}
+                        </p>
+                      </div>
+                      <div class="clearfix">
+                        <p class="float-left">AMOUNT</p>
+                        <p class="float-right mr text-success">
+                          {{ payment?.amount | number: "1.2-2" }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-sm-4 pv">
+                  <div class="clearfix"></div>
+                  <div class="clearfix">
+                    <p class="float-left">Created by</p>
+                    <p class="float-right mr">
+                      {{ payment?.user.firstname }}
+                      {{ payment?.user.lastname }}
+                    </p>
+                  </div>
+                  <div class="clearfix">
+                    <p class="float-left">Created On</p>
+                    <p class="float-right mr">
+                      {{ payment?.timestamp | date: "dd/MM/yyyy hh:mm a" }}
+                    </p>
+                  </div>
+                  <div class="clearfix">
+                    <p class="float-left">Status</p>
+                    <p class="float-right mr">
+                      <span
+                        class="badge badge-danger"
+                        *ngIf="payment?.status == 0"
+                        >PENDING</span
+                      >
+
+                      <span
+                        class="badge badge-success"
+                        *ngIf="payment?.status == 1"
+                        >APPROVED</span
+                      >
+                    </p>
+                  </div>
+                  <div class="clearfix" *ngIf="payment.status == 0">
+                    <p class="float-left">Approve Payment</p>
+                    <p class="float-right mr">
+                      <button class="btn btn-success" (click)="changeStatus(1)">
+                        Approve
+                      </button>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

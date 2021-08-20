@@ -17,6 +17,11 @@ export const routes = [
         path: "clients",
         loadChildren: "./clients/clients.module#ClientsModule",
       },
+
+            {
+        path: "payments",
+        loadChildren: "./payments/payments.module#PaymentsModule",
+      },
     ],
     canActivate: [AuthGuard],
   },
