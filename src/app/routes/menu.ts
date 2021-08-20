@@ -36,4 +36,11 @@ const Clients = {
   userlevel: 6,
 };
 
-export const menu = [headingMain, Clients,Payments, Settings];
+const cart = {
+  text: "CART",
+  link: "/cart/summary",
+  icon: "icon-basket-loaded",
+  userlevel: 1,
+};
+
+export const menu = [headingMain, cart, Clients,Payments, Settings];
