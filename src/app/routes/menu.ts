@@ -9,6 +9,13 @@ const Payments = {
   icon: "icon-wallet",
   userlevel: 6,
 };
+
+const Suppliers = {
+  text: "Suppliers",
+  link: "/suppliers/summary",
+  icon: "icon-wallet",
+  userlevel: 6,
+};
 const Settings = {
   text: "Settings",
   link: "/settings/users/summary",
@@ -43,4 +50,4 @@ const cart = {
   userlevel: 1,
 };
 
-export const menu = [headingMain, cart, Clients,Payments, Settings];
+export const menu = [headingMain, cart, Clients,Payments,Suppliers, Settings];
