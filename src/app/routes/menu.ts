@@ -36,10 +36,24 @@ const Settings = {
   ],
 };
 
+const shop = {
+  text: "SHOPPIN NOW",
+  link: "/shopping/summary",
+  icon: "icon-basket-loaded",
+  userlevel: 1,
+};
+
 const Clients = {
   text: "Customers",
   link: "/clients/summary",
   icon: "icon-people",
+  userlevel: 6,
+};
+
+const Inventory = {
+  text: "Inventory",
+  link: "/inventory/inventory/summary",
+  icon: "icon-layers",
   userlevel: 6,
 };
 
@@ -49,5 +63,20 @@ const cart = {
   icon: "icon-basket-loaded",
   userlevel: 1,
 };
+const space = {
+  text: "",
+  link: "",
+  icon: "",
+};
 
-export const menu = [headingMain, cart, Clients,Payments,Suppliers, Settings];
+export const menu = [
+  headingMain,
+  space,
+  shop,
+
+  Clients,
+  Payments,
+  Suppliers,
+  Inventory,
+  Settings,
+];

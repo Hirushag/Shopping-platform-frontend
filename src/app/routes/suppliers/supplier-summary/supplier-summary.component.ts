@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "../../../core/_models/user";
 import { AuthenticationService } from "../../../core/_services/authentication.service";
 import { SupplierService } from "../../../core/_services/supplier.service";
-import { timer } from "rxjs";
 
 @Component({
   selector: "app-supplier-summary",

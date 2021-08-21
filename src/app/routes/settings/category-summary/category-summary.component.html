@@ -23,301 +23,316 @@
 </div>
 
 <div *ngIf="LoadUI == true">
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="float-right">
-        <button
-          class="mb-2 btn btn-outline-primary"
-          type="button"
-          [routerLink]="['/home']"
-        >
-          Dashboard
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Category Content -->
-  <div class="row">
-    <div class="col-md-5">
-      <div class="card card-default">
-        <div class="card-body">
-          <form
-            [formGroup]="valForm"
-            class="form-validate form-horizontal"
-            (submit)="submitForm($event, valForm.value)"
-            novalidate=""
-          >
-            <fieldset class="b0">
-              <legend>Please fill the form</legend>
-            </fieldset>
-
-            <fieldset>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label text-right"
-                      >Category Name</label
-                    >
-                    <div class="col-sm-9">
-                      <input
-                        class="form-control"
-                        type="text"
-                        formControlName="catname"
-                        [formControl]="valForm.controls['catname']"
-                      />
-                      <span
-                        class="text-danger"
-                        *ngIf="
-                          valForm.controls['catname'].hasError('required') &&
-                          (valForm.controls['catname'].dirty ||
-                            valForm.controls['catname'].touched)
-                        "
-                        >This field is required</span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
-            <div class="card-footer text-center">
-              <button class="btn btn-primary" type="submit">
-                Add Category
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <p-table
-        #dt
-        [columns]="cols"
-        [value]="categoryList"
-        [paginator]="true"
-        [rows]="8"
-        [globalFilterFields]="['catname']"
-        [responsive]="false"
-        [autoLayout]="true"
-      >
-        <ng-template pTemplate="caption">
-          <div style="text-align: left">
-            <i class="fa fa-search" style="margin: 4px 4px 0 0"></i>
-            <input
-              type="text"
-              pInputText
-              size="50"
-              placeholder="Global Filter"
-              (input)="dt.filterGlobal($event.target.value, 'contains')"
-              style="width: auto"
-            />
-            <button class="btn btn-danger float-right" type="button" (click)="sortCategoryModal.show()">
-              Sort Category
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="float-right">
+            <button
+              class="mb-2 btn btn-outline-primary"
+              type="button"
+              [routerLink]="['/home']"
+            >
+              Dashboard
             </button>
           </div>
-        </ng-template>
-        <ng-template pTemplate="header" let-columns>
-          <tr>
-            <th
-              *ngFor="let col of columns"
-              [pSortableColumn]="col.field"
-              [pSortableColumnDisabled]="col.sortable"
-              [style.width]="col.width"
-            >
-              {{ col.header }}
-              <p-sortIcon
-                *ngIf="!col.sortable"
-                [field]="col.field"
-                ariaLabel="Activate to sort"
-                ariaLabelDesc="Activate to sort in descending order"
-                ariaLabelAsc="Activate to sort in ascending order"
-              ></p-sortIcon>
-            </th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-          <tr
-            [pSelectableRow]="rowData"
-            [ngClass]="rowData.priority == 1 ? 'text-danger' : ''"
+        </div>
+      </div>
+
+      <!-- Category Content -->
+      <div class="row">
+        <div class="col-md-5">
+          <div class="card card-default">
+            <div class="card-body">
+              <form
+                [formGroup]="valForm"
+                class="form-validate form-horizontal"
+                (submit)="submitForm($event, valForm.value)"
+                novalidate=""
+              >
+                <fieldset class="b0">
+                  <legend>Please fill the form</legend>
+                </fieldset>
+
+                <fieldset>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label text-right"
+                          >Category Name</label
+                        >
+                        <div class="col-sm-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            formControlName="catname"
+                            [formControl]="valForm.controls['catname']"
+                          />
+                          <span
+                            class="text-danger"
+                            *ngIf="
+                              valForm.controls['catname'].hasError(
+                                'required'
+                              ) &&
+                              (valForm.controls['catname'].dirty ||
+                                valForm.controls['catname'].touched)
+                            "
+                            >This field is required</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="card-footer text-center">
+                  <button class="btn btn-primary" type="submit">
+                    Add Category
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p-table
+            #dt
+            [columns]="cols"
+            [value]="categoryList"
+            [paginator]="true"
+            [rows]="8"
+            [globalFilterFields]="['catname']"
+            [responsive]="false"
+            [autoLayout]="true"
           >
-            <td *ngFor="let col of columns" [ngSwitch]="col.field">
-              <div *ngSwitchCase="'catname'">{{ rowData[col.field] }}</div>
-              <div *ngSwitchCase="'actions'">
+            <ng-template pTemplate="caption">
+              <div style="text-align: left">
+                <i class="fa fa-search" style="margin: 4px 4px 0 0"></i>
+                <input
+                  type="text"
+                  pInputText
+                  size="50"
+                  placeholder="Global Filter"
+                  (input)="dt.filterGlobal($event.target.value, 'contains')"
+                  style="width: auto"
+                />
                 <button
-                  class="mb-2 ml-2 btn btn-xs btn-warning"
+                  class="btn btn-danger float-right"
                   type="button"
-                  (click)="editCategoryModalShow(rowData, editcategoryModal)"
+                  (click)="sortCategoryModal.show()"
                 >
-                  <i class="fas fa-edit"></i>
+                  Sort Category
                 </button>
               </div>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
-  </div>
-  <!-- Category Content End -->
-
-  <!-- Sub Category Content -->
-  <div class="row">
-    <div class="col-md-5">
-      <div class="card card-default">
-        <div class="card-body">
-          <form
-            [formGroup]="valForm2"
-            class="form-validate form-horizontal"
-            (submit)="submitForm2($event, valForm2.value)"
-            novalidate=""
-          >
-            <fieldset class="b0">
-              <legend>Please fill the form</legend>
-            </fieldset>
-
-            <fieldset>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label text-right"
-                      >Sub Category Name</label
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th
+                  *ngFor="let col of columns"
+                  [pSortableColumn]="col.field"
+                  [pSortableColumnDisabled]="col.sortable"
+                  [style.width]="col.width"
+                >
+                  {{ col.header }}
+                  <p-sortIcon
+                    *ngIf="!col.sortable"
+                    [field]="col.field"
+                    ariaLabel="Activate to sort"
+                    ariaLabelDesc="Activate to sort in descending order"
+                    ariaLabelAsc="Activate to sort in ascending order"
+                  ></p-sortIcon>
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr
+                [pSelectableRow]="rowData"
+                [ngClass]="rowData.priority == 1 ? 'text-danger' : ''"
+              >
+                <td *ngFor="let col of columns" [ngSwitch]="col.field">
+                  <div *ngSwitchCase="'catname'">{{ rowData[col.field] }}</div>
+                  <div *ngSwitchCase="'actions'">
+                    <button
+                      class="mb-2 ml-2 btn btn-xs btn-warning"
+                      type="button"
+                      (click)="
+                        editCategoryModalShow(rowData, editcategoryModal)
+                      "
                     >
-                    <div class="col-sm-9">
-                      <input
-                        class="form-control"
-                        type="text"
-                        formControlName="name"
-                        [formControl]="valForm2.controls['name']"
-                      />
-                      <span
-                        class="text-danger"
-                        *ngIf="
-                          valForm2.controls['name'].hasError('required') &&
-                          (valForm2.controls['name'].dirty ||
-                            valForm2.controls['name'].touched)
-                        "
-                        >This field is required</span
-                      >
-                    </div>
+                      <i class="fas fa-edit"></i>
+                    </button>
                   </div>
-                </div>
-              </div>
-            </fieldset>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+      <!-- Category Content End -->
 
-            <fieldset>
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label text-right"
-                      >Category</label
-                    >
-                    <div class="col-sm-9">
-                      <select
-                        class="form-control"
-                        formControlName="category"
-                        [formControl]="valForm2.controls['category']"
-                      >
-                        <option value="null" disabled>Please select</option>
-                        <option
-                          *ngFor="let item of categoryList"
-                          [value]="item.id"
+      <!-- Sub Category Content -->
+      <div class="row">
+        <div class="col-md-5">
+          <div class="card card-default">
+            <div class="card-body">
+              <form
+                [formGroup]="valForm2"
+                class="form-validate form-horizontal"
+                (submit)="submitForm2($event, valForm2.value)"
+                novalidate=""
+              >
+                <fieldset class="b0">
+                  <legend>Please fill the form</legend>
+                </fieldset>
+
+                <fieldset>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label text-right"
+                          >Sub Category Name</label
                         >
-                          {{ item.catname }}
-                        </option>
-                      </select>
-                      <span
-                        class="text-danger"
-                        *ngIf="
-                          valForm2.controls['category'].hasError('required') &&
-                          (valForm2.controls['category'].dirty ||
-                            valForm2.controls['category'].touched)
-                        "
-                        >This field is required</span
-                      >
+                        <div class="col-sm-9">
+                          <input
+                            class="form-control"
+                            type="text"
+                            formControlName="name"
+                            [formControl]="valForm2.controls['name']"
+                          />
+                          <span
+                            class="text-danger"
+                            *ngIf="
+                              valForm2.controls['name'].hasError('required') &&
+                              (valForm2.controls['name'].dirty ||
+                                valForm2.controls['name'].touched)
+                            "
+                            >This field is required</span
+                          >
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </fieldset>
+                </fieldset>
 
-            <div class="card-footer text-center">
-              <button class="btn btn-primary" type="submit">
-                Add Sub Category
-              </button>
+                <fieldset>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label text-right"
+                          >Category</label
+                        >
+                        <div class="col-sm-9">
+                          <select
+                            class="form-control"
+                            formControlName="category"
+                            [formControl]="valForm2.controls['category']"
+                          >
+                            <option value="null" disabled>Please select</option>
+                            <option
+                              *ngFor="let item of categoryList"
+                              [value]="item.id"
+                            >
+                              {{ item.catname }}
+                            </option>
+                          </select>
+                          <span
+                            class="text-danger"
+                            *ngIf="
+                              valForm2.controls['category'].hasError(
+                                'required'
+                              ) &&
+                              (valForm2.controls['category'].dirty ||
+                                valForm2.controls['category'].touched)
+                            "
+                            >This field is required</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <div class="card-footer text-center">
+                  <button class="btn btn-primary" type="submit">
+                    Add Sub Category
+                  </button>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p-table
+            #dt
+            [columns]="xcols"
+            [value]="subCategoryList"
+            [paginator]="true"
+            [rows]="8"
+            [globalFilterFields]="['name', 'category_name']"
+            [responsive]="false"
+            [autoLayout]="true"
+          >
+            <ng-template pTemplate="caption">
+              <div style="text-align: left">
+                <i class="fa fa-search" style="margin: 4px 4px 0 0"></i>
+                <input
+                  type="text"
+                  pInputText
+                  size="50"
+                  placeholder="Global Filter"
+                  (input)="dt.filterGlobal($event.target.value, 'contains')"
+                  style="width: auto"
+                />
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th
+                  *ngFor="let col of columns"
+                  [pSortableColumn]="col.field"
+                  [pSortableColumnDisabled]="col.sortable"
+                  [style.width]="col.width"
+                >
+                  {{ col.header }}
+                  <p-sortIcon
+                    *ngIf="!col.sortable"
+                    [field]="col.field"
+                    ariaLabel="Activate to sort"
+                    ariaLabelDesc="Activate to sort in descending order"
+                    ariaLabelAsc="Activate to sort in ascending order"
+                  ></p-sortIcon>
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr
+                [pSelectableRow]="rowData"
+                [ngClass]="rowData.priority == 1 ? 'text-danger' : ''"
+              >
+                <td *ngFor="let col of columns" [ngSwitch]="col.field">
+                  <div *ngSwitchCase="'name'">{{ rowData[col.field] }}</div>
+                  <div *ngSwitchCase="'category_name'">
+                    {{ rowData[col.field] }}
+                  </div>
+                  <div *ngSwitchCase="'actions'">
+                    <button
+                      class="mb-2 ml-2 btn btn-xs btn-warning"
+                      type="button"
+                      (click)="
+                        editSubCategoryModalShow(rowData, editsubcategoryModal)
+                      "
+                    >
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <p-table
-        #dt
-        [columns]="xcols"
-        [value]="subCategoryList"
-        [paginator]="true"
-        [rows]="8"
-        [globalFilterFields]="['name', 'category_name']"
-        [responsive]="false"
-        [autoLayout]="true"
-      >
-        <ng-template pTemplate="caption">
-          <div style="text-align: left">
-            <i class="fa fa-search" style="margin: 4px 4px 0 0"></i>
-            <input
-              type="text"
-              pInputText
-              size="50"
-              placeholder="Global Filter"
-              (input)="dt.filterGlobal($event.target.value, 'contains')"
-              style="width: auto"
-            />
-          </div>
-        </ng-template>
-        <ng-template pTemplate="header" let-columns>
-          <tr>
-            <th
-              *ngFor="let col of columns"
-              [pSortableColumn]="col.field"
-              [pSortableColumnDisabled]="col.sortable"
-              [style.width]="col.width"
-            >
-              {{ col.header }}
-              <p-sortIcon
-                *ngIf="!col.sortable"
-                [field]="col.field"
-                ariaLabel="Activate to sort"
-                ariaLabelDesc="Activate to sort in descending order"
-                ariaLabelAsc="Activate to sort in ascending order"
-              ></p-sortIcon>
-            </th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-          <tr
-            [pSelectableRow]="rowData"
-            [ngClass]="rowData.priority == 1 ? 'text-danger' : ''"
-          >
-            <td *ngFor="let col of columns" [ngSwitch]="col.field">
-              <div *ngSwitchCase="'name'">{{ rowData[col.field] }}</div>
-              <div *ngSwitchCase="'category_name'">
-                {{ rowData[col.field] }}
-              </div>
-              <div *ngSwitchCase="'actions'">
-                <button
-                  class="mb-2 ml-2 btn btn-xs btn-warning"
-                  type="button"
-                  (click)="
-                    editSubCategoryModalShow(rowData, editsubcategoryModal)
-                  "
-                >
-                  <i class="fas fa-edit"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
   </div>
+
   <!-- Sub Category Content End -->
 
   <!-- edit category -->
