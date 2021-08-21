@@ -1,0 +1,83 @@
+<div id="products-post">
+  <div>
+    <div class="row">
+      <div class="col-md-12 mt-0">
+        <div id="product-heading">
+          <h2 class="mb-0">
+            <img
+              src="assets/img/logo.png"
+              alt="Logo"
+              class="logo"
+              width="200"
+              height="200"
+            />
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="filters col-md-12 col-xs-12">
+        <ul id="filters" class="clearfix">
+          <li>
+            <span
+              class="filter"
+              [ngClass]="{ 'bg-danger': category == null }"
+              (click)="category = null; getProducts()"
+              style="padding: 2px 10px"
+              >All</span
+            >
+            <span
+              *ngFor="let cat of categories"
+              class="filter"
+              [ngClass]="{ 'bg-danger': category == cat.id }"
+              (click)="category = cat.id; getProducts()"
+              style="padding: 2px 10px"
+            >
+              {{ cat.catname }}</span
+            >
+          </li>
+        </ul>
+        <div class="search-box">
+          <input
+            type="text"
+            class="search-box"
+            [(ngModel)]="searchText"
+            placeholder="Search Items By Name"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row" id="Container" *ngIf="store_items.length > 0">
+      <div
+        class="col-md-3 col-sm-6 mix portfolio-item"
+        *ngFor="let items of store_items | arrayFilter: searchText"
+      >
+        <div class="portfolio-wrapper">
+          <div class="portfolio-thumb">
+            <img src="assets/img/shop.jpg" />
+          </div>
+          <div class="label-text">
+            <h3>{{ items.productname }}</h3>
+            <span class="text-category ml-1"
+              >{{ items.sellingprice | number: "1.2-2" }} LKR</span
+            >
+            <button
+              class="btn btn-md btn-success float-right ml-2 mb-2"
+              (click)="addToCart(items)"
+            >
+              <em class="fas fa-shopping-cart"></em>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="Container" *ngIf="store_items.length == 0">
+      <div class="col-md-12">
+        <h3>Items Not Available</h3>
+      </div>
+    </div>
+  </div>
+</div>
