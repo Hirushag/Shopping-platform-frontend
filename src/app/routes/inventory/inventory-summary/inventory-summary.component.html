@@ -1,4 +1,5 @@
-<div class="content-heading mb-2">Payments Summary</div>
+<div class="content-heading mb-2">Inventory Summary</div>
+<toaster-container [toasterconfig]="toasterconfig"></toaster-container>
 
 <div class="row" *ngIf="LoadUI == false">
   <div class="col-lg-12 no-gutters mt-5">
@@ -37,22 +38,28 @@
           </div>
         </div>
       </div>
+      <!-- content -->
+      <div class="row">
+        <div class="col-md-12">
+          <button
+            class="mb-2 btn btn-success"
+            type="button"
+            [routerLink]="['/inventory/inventory/add']"
+          >
+            Add Item
+          </button>
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-md-12">
-          <h3 class="mt-2 mb-1">Payments</h3>
-
           <p-table
             #dt
             [columns]="cols"
-            [value]="payments"
+            [value]="inventorylist"
             [paginator]="true"
             [rows]="8"
-            [globalFilterFields]="[
-              'txnid',
-              'client.clientname',
-              'client.clientcode'
-            ]"
+            [globalFilterFields]="['productcode', 'productname', 'cat.catname']"
             [responsive]="false"
             [autoLayout]="true"
           >
@@ -91,33 +98,23 @@
             <ng-template pTemplate="body" let-rowData let-columns="columns">
               <tr [pSelectableRow]="rowData">
                 <td *ngFor="let col of columns" [ngSwitch]="col.field">
-                  <div *ngSwitchCase="'client'">
-                    {{ rowData.user.firstname }}
-                    {{ rowData.user.lastname }}
+                  <div *ngSwitchCase="'productcode'">
+                    {{ rowData[col.field] }}
                   </div>
-                  <div *ngSwitchCase="'method'">{{ rowData.method }}</div>
-
-                  <div class="text-right" *ngSwitchCase="'amount'">
-                    {{ rowData.amount | number: "2.2-2" }}
+                  <div *ngSwitchCase="'productname'">
+                    {{ rowData[col.field] }}
                   </div>
 
-                  <div *ngSwitchCase="'status'">
-                    <span class="badge badge-danger" *ngIf="rowData.status == 0"
-                      >PENDING</span
-                    >
-                    <span
-                      class="badge badge-success"
-                      *ngIf="rowData.status == 1"
-                      >APROVED</span
-                    >
-                  </div>
-
+                  <div *ngSwitchCase="'category'">{{ rowData.catname }}</div>
+                  <div *ngSwitchCase="'sub_category'">{{ rowData.name }}</div>
                   <div *ngSwitchCase="'actions'">
                     <div class="row no-gutters">
                       <div class="col-md-12 pr-1">
                         <button
                           class="btn btn-primary btn-xs btn-block mb-1"
-                          routerLink="/payments/detail/{{ rowData.id }}"
+                          routerLink="/inventory/inventory/detail/{{
+                            rowData.id
+                          }}"
                         >
                           <i class="fas fa-search-plus"></i>
                         </button>

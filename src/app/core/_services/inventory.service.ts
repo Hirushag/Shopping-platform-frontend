@@ -60,6 +60,16 @@ export class InventoryService {
     );
   }
 
+  getSuppliersByCategory(inventory) {
+    let APIurl = this.BaseAPIurl + "get-suppliers-by-category";
+    return this.http.post<any>(APIurl, JSON.stringify(inventory)).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   // Edit Inventory
   editInventory(inventory) {
     let APIurl = this.BaseAPIurl + "edit-inventory";
@@ -135,5 +145,13 @@ export class InventoryService {
       }),
       catchError(this.handleError)
     );
+  }
+
+  public uploadImage(image: File): Observable<Response> {
+    const formData = new FormData();
+
+    formData.append("image", image);
+
+    return this.http.post<any>("/api/v1/inventory/image-upload", formData);
   }
 }

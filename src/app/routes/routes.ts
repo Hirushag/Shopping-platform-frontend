@@ -13,9 +13,14 @@ export const routes = [
         loadChildren: "./settings/settings.module#SettingsModule",
       },
 
-            {
+      {
         path: "clients",
         loadChildren: "./clients/clients.module#ClientsModule",
+      },
+
+      {
+        path: "inventory",
+        loadChildren: "./inventory/inventory.module#InventoryModule",
       },
 
       {
@@ -23,13 +28,18 @@ export const routes = [
         loadChildren: "./clients/clients.module#ClientsModule",
       },
 
-            {
+      {
         path: "payments",
         loadChildren: "./payments/payments.module#PaymentsModule",
       },
-                 {
+      {
         path: "cart",
         loadChildren: "./cart/cart.module#CartModule",
+      },
+
+      {
+        path: "shopping",
+        loadChildren: "./shopping/shopping.module#ShoppingModule",
       },
 
       {

@@ -1,0 +1,325 @@
+<div class="content-heading mb-2">Add Inventory</div>
+
+<div class="row" *ngIf="LoadUI == false">
+  <div class="col-lg-12 no-gutters mt-5">
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <div class="ball-grid-pulse">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <h2 class="text-muted">Loading interfaces...</h2>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="LoadUI == true">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="float-right">
+        <button
+          class="mb-2 btn btn-outline-primary mr-2"
+          type="button"
+          [routerLink]="['/inventory/inventory/summary']"
+        >
+          Back to Inventory
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- content -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-default">
+        <div class="card-body">
+          <form
+            [formGroup]="valForm"
+            class="form-validate form-horizontal"
+            (submit)="submitForm($event, valForm.value)"
+            novalidate=""
+          >
+            <fieldset class="b0">
+              <legend>Please fill the form</legend>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-right"
+                      >Product Name</label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="productname"
+                        [formControl]="valForm.controls['productname']"
+                      />
+                      <span
+                        class="text-danger"
+                        *ngIf="
+                          valForm.controls['productname'].hasError(
+                            'required'
+                          ) &&
+                          (valForm.controls['productname'].dirty ||
+                            valForm.controls['productname'].touched)
+                        "
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-right"
+                      >Product Code</label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        class="form-control"
+                        type="text"
+                        formControlName="productcode"
+                        [formControl]="valForm.controls['productcode']"
+                      />
+                      <span
+                        class="text-danger"
+                        *ngIf="
+                          valForm.controls['productcode'].hasError(
+                            'required'
+                          ) &&
+                          (valForm.controls['productcode'].dirty ||
+                            valForm.controls['productcode'].touched)
+                        "
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-right"
+                      >Category</label
+                    >
+                    <div class="col-sm-9">
+                      <select
+                        class="form-control"
+                        formControlName="cat"
+                        [formControl]="valForm.controls['cat']"
+                        (ngModelChange)="
+                          getSuppliersByCategory(valForm.controls['cat'])
+                        "
+                      >
+                        <option value="null" disabled>Please Select</option>
+                        <option
+                          *ngFor="let cat of categorylist"
+                          value="{{ cat.id }}"
+                        >
+                          {{ cat.catname }}
+                        </option>
+                      </select>
+                      <span
+                        class="text-danger"
+                        *ngIf="
+                          valForm.controls['cat'].hasError('required') &&
+                          (valForm.controls['cat'].dirty ||
+                            valForm.controls['cat'].touched)
+                        "
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-right"
+                      >Sub Category</label
+                    >
+                    <div class="col-sm-9">
+                      <select
+                        class="form-control"
+                        formControlName="sub_cat"
+                        [formControl]="valForm.controls['sub_cat']"
+                      >
+                        <option value="null" disabled>Please Select</option>
+                        <option
+                          *ngFor="let cat of sub_categories"
+                          value="{{ cat.id }}"
+                        >
+                          {{ cat.name }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-right"
+                      >Supplier</label
+                    >
+                    <div class="col-sm-9">
+                      <select
+                        class="form-control"
+                        formControlName="supplier"
+                        [formControl]="valForm.controls['supplier']"
+                      >
+                        <option value="null" disabled>Please Select</option>
+                        <option
+                          *ngFor="let suppliers of suppliers"
+                          value="{{ suppliers.id }}"
+                        >
+                          {{ suppliers.supplier_name }}
+                        </option>
+                      </select>
+                      <span
+                        class="text-danger"
+                        *ngIf="
+                          valForm.controls['supplier'].hasError('required') &&
+                          (valForm.controls['supplier'].dirty ||
+                            valForm.controls['supplier'].touched)
+                        "
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-right"
+                      >Cost</label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        class="form-control"
+                        type="number"
+                        formControlName="cost"
+                        [formControl]="valForm.controls['cost']"
+                      />
+                      <span
+                        class="text-danger"
+                        *ngIf="
+                          valForm.controls['cost'].hasError('required') &&
+                          (valForm.controls['cost'].dirty ||
+                            valForm.controls['cost'].touched)
+                        "
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-right"
+                      >Selling Price</label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        class="form-control"
+                        type="number"
+                        formControlName="sellingprice"
+                        [formControl]="valForm.controls['sellingprice']"
+                      />
+                      <span
+                        class="text-danger"
+                        *ngIf="
+                          valForm.controls['sellingprice'].hasError(
+                            'required'
+                          ) &&
+                          (valForm.controls['sellingprice'].dirty ||
+                            valForm.controls['sellingprice'].touched)
+                        "
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-right"
+                      >Quantity</label
+                    >
+                    <div class="col-sm-9">
+                      <input
+                        class="form-control"
+                        type="number"
+                        formControlName="quantity"
+                        [formControl]="valForm.controls['quantity']"
+                      />
+                      <span
+                        class="text-danger"
+                        *ngIf="
+                          valForm.controls['quantity'].hasError('required') &&
+                          (valForm.controls['quantity'].dirty ||
+                            valForm.controls['quantity'].touched)
+                        "
+                        >This field is required</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label text-right"
+                      >Image</label
+                    >
+                    <div class="col-sm-9">
+                      <p-fileUpload
+                        name="files"
+                        [url]="UPLDURL"
+                        (onUpload)="onUpload($event)"
+                        accept="image/*"
+                        maxFileSize="1000000"
+                      >
+                        <ng-template pTemplate="content">
+                          <ul *ngIf="uploadedFiles.length">
+                            <li *ngFor="let file of uploadedFiles">
+                              {{ file.name }} - {{ file.size }} bytes
+                            </li>
+                          </ul>
+                        </ng-template>
+                      </p-fileUpload>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="card-footer text-center">
+              <button class="btn btn-primary" type="submit">Add Product</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of content -->
+</div>
