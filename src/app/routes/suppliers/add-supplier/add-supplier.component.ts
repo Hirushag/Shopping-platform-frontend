@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ToasterConfig, ToasterService} from 'angular2-toaster';
-import {AuthenticationService} from '../../../core/_services/authentication.service';
-import {SupplierService} from '../../../core/_services/supplier.service';
-import {Router} from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ToasterConfig, ToasterService } from "angular2-toaster";
+import { AuthenticationService } from "../../../core/_services/authentication.service";
+import { SupplierService } from "../../../core/_services/supplier.service";
+import { Router } from "@angular/router";
+import { ItemCategoriesService } from "../../../core/_services/itemCategories.service";
 
 @Component({
-  selector: 'app-add-supplier',
-  templateUrl: './add-supplier.component.html',
-  styleUrls: ['./add-supplier.component.scss']
+  selector: "app-add-supplier",
+  templateUrl: "./add-supplier.component.html",
+  styleUrls: ["./add-supplier.component.scss"],
 })
 export class AddSupplierComponent implements OnInit {
-
   sysuser: any;
   LoadUI: boolean = false;
 
@@ -22,18 +22,21 @@ export class AddSupplierComponent implements OnInit {
     positionClass: "toast-bottom-right",
     showCloseButton: true,
   });
+  categoryList: any;
 
   constructor(
     fb: FormBuilder,
     private authservice: AuthenticationService,
     private toasterService: ToasterService,
-    private supplierservice:SupplierService,
-    private router: Router
+    private supplierservice: SupplierService,
+    private router: Router,
+    private categoryService: ItemCategoriesService
   ) {
     this.valForm = fb.group({
       supplier_name: [null, Validators.required],
       phone: [null, Validators.required],
       address: [null, Validators.required],
+      category: [null, Validators.required],
     });
   }
 
@@ -42,6 +45,8 @@ export class AddSupplierComponent implements OnInit {
       this.sysuser = sysuser;
       this.LoadUI = true;
     });
+
+    this.getAllCategories();
   }
 
   submitForm($ev, value: any) {
@@ -65,7 +70,7 @@ export class AddSupplierComponent implements OnInit {
             );
 
             this.valForm.reset();
-            this.router.navigate(['/suppliers/detail/data.id'])
+            this.router.navigate(["/suppliers/detail/" + data.id]);
           } else {
             this.toaster = {
               type: "warning",
@@ -86,4 +91,9 @@ export class AddSupplierComponent implements OnInit {
     }
   }
 
+  getAllCategories() {
+    this.categoryService
+      .getAll()
+      .subscribe((data) => (this.categoryList = data));
+  }
 }

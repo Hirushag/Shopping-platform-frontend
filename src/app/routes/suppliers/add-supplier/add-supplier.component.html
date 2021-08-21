@@ -3,7 +3,6 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="pull-right">
-
       <button
         class="mb-2 btn btn-outline-primary"
         type="button"
@@ -53,7 +52,7 @@
               <div class="col-sm-6">
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label text-right"
-                  >Supplier Name</label
+                    >Supplier Name</label
                   >
                   <div class="col-sm-9">
                     <input
@@ -65,11 +64,13 @@
                     <span
                       class="text-danger"
                       *ngIf="
-                        valForm.controls['supplier_name'].hasError('required') &&
+                        valForm.controls['supplier_name'].hasError(
+                          'required'
+                        ) &&
                         (valForm.controls['supplier_name'].dirty ||
                           valForm.controls['supplier_name'].touched)
                       "
-                    >This field is required</span
+                      >This field is required</span
                     >
                   </div>
                 </div>
@@ -77,7 +78,7 @@
               <div class="col-sm-6">
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label text-right"
-                  >Supplier Phone</label
+                    >Supplier Phone</label
                   >
                   <div class="col-sm-9">
                     <input
@@ -93,7 +94,7 @@
                         (valForm.controls['phone'].dirty ||
                           valForm.controls['phone'].touched)
                       "
-                    >This field is required</span
+                      >This field is required</span
                     >
                   </div>
                 </div>
@@ -106,7 +107,7 @@
               <div class="col-sm-6">
                 <div class="form-group row">
                   <label class="col-sm-3 col-form-label text-right"
-                  >Company Address</label
+                    >Company Address</label
                   >
                   <div class="col-sm-9">
                     <input
@@ -122,13 +123,43 @@
                         (valForm.controls['address'].dirty ||
                           valForm.controls['address'].touched)
                       "
-                    >This field is required</span
+                      >This field is required</span
                     >
                   </div>
                 </div>
               </div>
 
-
+              <div class="col-sm-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label text-right"
+                    >Category</label
+                  >
+                  <div class="col-sm-9">
+                    <select
+                      class="form-control"
+                      formControlName="category"
+                      [formControl]="valForm.controls['category']"
+                    >
+                      <option value="null" disabled>Please select</option>
+                      <option
+                        *ngFor="let item of categoryList"
+                        [value]="item.id"
+                      >
+                        {{ item.catname }}
+                      </option>
+                    </select>
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        valForm.controls['category'].hasError('required') &&
+                        (valForm.controls['category'].dirty ||
+                          valForm.controls['category'].touched)
+                      "
+                      >This field is required</span
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
           </fieldset>
 
