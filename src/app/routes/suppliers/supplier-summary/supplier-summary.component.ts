@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from '../../../core/_models/user';
-import {AuthenticationService} from '../../../core/_services/authentication.service';
-import {SupplierService} from '../../../core/_services/supplier.service';
-import {timer} from 'rxjs';
+import { Component, OnInit } from "@angular/core";
+import { User } from "../../../core/_models/user";
+import { AuthenticationService } from "../../../core/_services/authentication.service";
+import { SupplierService } from "../../../core/_services/supplier.service";
+import { timer } from "rxjs";
 
 @Component({
-  selector: 'app-supplier-summary',
-  templateUrl: './supplier-summary.component.html',
-  styleUrls: ['./supplier-summary.component.scss']
+  selector: "app-supplier-summary",
+  templateUrl: "./supplier-summary.component.html",
+  styleUrls: ["./supplier-summary.component.scss"],
 })
 export class SupplierSummaryComponent implements OnInit {
   suppliers: any = [];
@@ -19,14 +19,14 @@ export class SupplierSummaryComponent implements OnInit {
   constructor(
     private authservice: AuthenticationService,
     private supplierservice: SupplierService
-  ) { }
+  ) {}
 
   ngOnInit() {
-
     this.cols = [
       { field: "supplier_id", header: "Supplier ID" },
       { field: "suppliername", header: "Supplier Name" },
       { field: "suppliercode", header: "Supplier Code" },
+      { field: "category", header: "Category" },
       { field: "phone", header: "Supplier Phone" },
       { field: "company", header: "Company Address" },
       { field: "status", header: "Status" },
@@ -41,10 +41,9 @@ export class SupplierSummaryComponent implements OnInit {
   }
 
   getData() {
-      this.supplierservice.getAllSuppliers().subscribe((data) => {
-        console.log(data);
-        this.suppliers = data;
-      });
+    this.supplierservice.getAllSuppliers().subscribe((data) => {
+      console.log(data);
+      this.suppliers = data;
+    });
   }
-
 }

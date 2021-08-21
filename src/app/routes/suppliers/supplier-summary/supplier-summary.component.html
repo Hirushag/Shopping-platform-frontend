@@ -22,10 +22,13 @@
 </div>
 
 <div *ngIf="LoadUI == true">
-
   <div class="row">
-    <div class="col-md-12 ">
-      <button class="mb-2 btn btn-lg btn-success mt-2" type="button" [routerLink]="['/suppliers/add']">
+    <div class="col-md-12">
+      <button
+        class="mb-2 btn btn-lg btn-success mt-2"
+        type="button"
+        [routerLink]="['/suppliers/add']"
+      >
         Add Supplier
       </button>
     </div>
@@ -41,11 +44,7 @@
         [value]="suppliers"
         [paginator]="true"
         [rows]="8"
-        [globalFilterFields]="[
-
-          'suppliername',
-          'suppliercode'
-        ]"
+        [globalFilterFields]="['suppliername', 'suppliercode']"
         [responsive]="false"
         [autoLayout]="true"
       >
@@ -90,6 +89,9 @@
               <div *ngSwitchCase="'suppliercode'">
                 {{ rowData.suppliercode }}
               </div>
+              <div *ngSwitchCase="'category'">
+                {{ rowData.category?.catname }}
+              </div>
               <div *ngSwitchCase="'suppliername'">
                 {{ rowData.supplier_name }}
               </div>
@@ -102,14 +104,12 @@
                 {{ rowData.company_address }}
               </div>
 
-
-
               <div *ngSwitchCase="'status'">
                 <span class="badge badge-danger" *ngIf="rowData.status == 0"
-                >DISABLED</span
+                  >DISABLED</span
                 >
                 <span class="badge badge-success" *ngIf="rowData.status == 1"
-                >ACTIVE</span
+                  >ACTIVE</span
                 >
               </div>
 
