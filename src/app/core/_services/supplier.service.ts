@@ -39,4 +39,34 @@ export class SupplierService {
       catchError(this.handleError)
     );
   }
+
+  EditSupplier(user) {
+    let APIurl = this.BaseAPIurl + "edit-supplier";
+    return this.http.post<any>(APIurl, JSON.stringify(user)).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  getSupplier(user) {
+    let APIurl = this.BaseAPIurl + "get-supplier";
+    return this.http.post<any>(APIurl, JSON.stringify(user)).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  changeStatus(obj) {
+    let APIurl = this.BaseAPIurl + "update-status";
+    return this.http.post<any>(APIurl, JSON.stringify(obj)).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
 }

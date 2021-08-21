@@ -1,3 +1,159 @@
-<p>
-  edit-supplier works!
-</p>
+<div class="content-heading">Edit Supplier</div>
+<toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="pull-right">
+
+      <button
+        class="mb-2 btn btn-outline-primary"
+        type="button"
+        [routerLink]="['/suppliers/summary']"
+      >
+        Back to Suppliers
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="LoadUI == false">
+  <div class="col-lg-12 no-gutters mt-5">
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <div class="ball-grid-pulse">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <h2 class="text-muted">Loading interfaces...</h2>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="LoadUI == true">
+  <div class="col-md-12" *ngIf="sysuser?.userlevel >= 4">
+    <div class="card card-default">
+      <div class="card-body">
+        <form
+          [formGroup]="valForm"
+          class="form-validate form-horizontal"
+          (submit)="submitForm($event, valForm.value)"
+          novalidate=""
+        >
+          <fieldset class="b0"><legend>Please fill the form</legend></fieldset>
+
+          <fieldset>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label text-right"
+                  >Supplier Name</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="supplier_name"
+                      [formControl]="valForm.controls['supplier_name']"
+                    />
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        valForm.controls['supplier_name'].hasError('required') &&
+                        (valForm.controls['supplier_name'].dirty ||
+                          valForm.controls['supplier_name'].touched)
+                      "
+                    >This field is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label text-right"
+                  >Supplier Phone</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="phone"
+                      [formControl]="valForm.controls['phone']"
+                    />
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        valForm.controls['phone'].hasError('required') &&
+                        (valForm.controls['phone'].dirty ||
+                          valForm.controls['phone'].touched)
+                      "
+                    >This field is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group row">
+                  <label class="col-sm-3 col-form-label text-right"
+                  >Company Address</label
+                  >
+                  <div class="col-sm-9">
+                    <input
+                      class="form-control"
+                      type="text"
+                      formControlName="address"
+                      [formControl]="valForm.controls['address']"
+                    />
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        valForm.controls['address'].hasError('required') &&
+                        (valForm.controls['address'].dirty ||
+                          valForm.controls['address'].touched)
+                      "
+                    >This field is required</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </fieldset>
+
+          <div class="card-footer text-center">
+            <button class="btn btn-primary" type="submit">Update Supplier</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="sysuser?.userlevel < 4">
+    <div class="col-md-12">
+      <div class="card card-default">
+        <div class="card-body">
+          <div class="col-md-12 text-center">
+            <alert type="danger">
+              <p class="lead">
+                <em class="fa fa-warning"></em> You DO NOT have permission to
+                perform this action !!!
+              </p>
+            </alert>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
