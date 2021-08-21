@@ -31,6 +31,11 @@ export const routes = [
         path: "cart",
         loadChildren: "./cart/cart.module#CartModule",
       },
+
+      {
+        path: "suppliers",
+        loadChildren: "./suppliers/suppliers.module#SuppliersModule",
+      },
     ],
     canActivate: [AuthGuard],
   },
