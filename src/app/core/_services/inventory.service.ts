@@ -60,6 +60,16 @@ export class InventoryService {
     );
   }
 
+  updateImageInventory(inventory) {
+    let APIurl = this.BaseAPIurl + "update-image";
+    return this.http.post<any>(APIurl, JSON.stringify(inventory)).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   deleteInventory(inventory) {
     let APIurl = this.BaseAPIurl + "delete-inventory";
     return this.http.post<any>(APIurl, JSON.stringify(inventory)).pipe(
@@ -162,6 +172,9 @@ export class InventoryService {
 
     formData.append("image", image);
 
-    return this.http.post<any>("/api/v1/inventory/image-upload", formData);
+    return this.http.post<any>(
+      "http://localhost:1337/api/v1/inventory/upload-image",
+      formData
+    );
   }
 }

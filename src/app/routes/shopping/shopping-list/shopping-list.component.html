@@ -57,7 +57,12 @@
       >
         <div class="portfolio-wrapper">
           <div class="portfolio-thumb">
-            <img src="assets/img/shop.jpg" />
+            <span *ngIf="items.image == null">
+              <img src="assets/img/shop.jpg"
+            /></span>
+            <span *ngIf="items.image != null">
+              <img src="{{ items?.image }}"
+            /></span>
           </div>
           <div class="label-text">
             <h3>{{ items.productname }}</h3>
