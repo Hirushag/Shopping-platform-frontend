@@ -117,7 +117,6 @@ $nav-top-item-desktop-active: $nav-top-item-mobile-active;
   .navbar-nav > .nav-item > .nav-link,
   .navbar-nav > .nav-item.show > .nav-link {
     color: $nav-top-item-desktop;
-    &:hover,
     &:focus {
       color: $nav-top-item-desktop-active;
     }
@@ -125,7 +124,6 @@ $nav-top-item-desktop-active: $nav-top-item-mobile-active;
   .navbar-nav > .nav-item.active > .nav-link,
   .navbar-nav > .nav-item.show > .nav-link {
     &,
-    &:hover,
     &:focus {
       background-color: transparent;
     }
@@ -261,7 +259,6 @@ $nav-top-item-desktop-active: $nav-top-item-mobile-active;
   .topnavbar {
     .navbar-nav > .nav-item.show > .nav-link {
       &,
-      &:hover,
       &:focus {
         box-shadow: 0 -3px 0 darken($nav-top-bg, 6%) inset;
         @include transition(all 0.2s);
