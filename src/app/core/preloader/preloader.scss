@@ -6,9 +6,9 @@
 @import "../../shared/styles/bootstrap/_mixins";
 @import "../../shared/styles/app/variables";
 
-$preloader-bg: $danger;
-$preloader-wd: 100px;
-$preloader-hg: 30px;
+$preloader-bg: #03193a;
+$preloader-wd: 200px;
+$preloader-hg: 200px;
 
 /*@noflip*/
 .preloader {
@@ -24,10 +24,26 @@ $preloader-hg: 30px;
     $preloader-bg 10%,
     darken($preloader-bg, 5%) 90%
   ); /* Chrome 10+, Saf5.1+ */
-  background-image: -moz-linear-gradient(90deg, $preloader-bg 10%, darken($preloader-bg, 5%) 90%); /* FF3.6+ */
-  background-image: -ms-linear-gradient(90deg, $preloader-bg 10%, darken($preloader-bg, 5%) 90%); /* IE10 */
-  background-image: -o-linear-gradient(90deg, $preloader-bg 10%, darken($preloader-bg, 5%) 90%); /* Opera 11.10+ */
-  background-image: linear-gradient(90deg, $preloader-bg 10%, darken($preloader-bg, 5%) 90%); /* W3C */
+  background-image: -moz-linear-gradient(
+    90deg,
+    $preloader-bg 10%,
+    darken($preloader-bg, 5%) 90%
+  ); /* FF3.6+ */
+  background-image: -ms-linear-gradient(
+    90deg,
+    $preloader-bg 10%,
+    darken($preloader-bg, 5%) 90%
+  ); /* IE10 */
+  background-image: -o-linear-gradient(
+    90deg,
+    $preloader-bg 10%,
+    darken($preloader-bg, 5%) 90%
+  ); /* Opera 11.10+ */
+  background-image: linear-gradient(
+    90deg,
+    $preloader-bg 10%,
+    darken($preloader-bg, 5%) 90%
+  ); /* W3C */
   z-index: 9999;
   transition: opacity 0.65s;
 }
@@ -43,7 +59,7 @@ $preloader-hg: 30px;
   height: $preloader-hg;
   margin: auto;
   overflow: auto;
-  background-image: url(../../../assets/img/preloader/preloader.empty.png);
+  background-image: url(../../../assets/img/logo-wi.png);
   background-size: $preloader-wd $preloader-hg;
 }
 
@@ -54,7 +70,7 @@ $preloader-hg: 30px;
   left: 0;
   bottom: 0;
   min-width: 10px;
-  background-image: url(../../../assets/img/preloader/preloader.full.png);
+  background-image: url(../../../assets/img/logo-wi.png);
   background-size: $preloader-wd $preloader-hg;
 }
 .preloader-hidden {

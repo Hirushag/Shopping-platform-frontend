@@ -200,7 +200,11 @@
                         Please select the payment method
                       </option>
                       <option value="CASH ON DELIVERY">CASH ON DELIVERY</option>
-                      <option value="ONLINE PAYMENT">ONLINE PAYMENT</option>
+                      <option value="PAYPAL PAYMENT">
+                        <a href="https://www.paypal.com/uk/signin"
+                          >PAYPAL PAYMENT</a
+                        >
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -224,12 +228,12 @@
               Continue
             </button>
             <button
-              *ngIf="payment_method == 'ONLINE PAYMENT'"
+              *ngIf="payment_method == 'PAYPAL PAYMENT'"
               class="btn ml-1 btn-green"
               type="button"
-              (click)="cardDetails.show()"
+              (click)="addDeliveryAddress.show()"
             >
-              Add Card Details
+              Add Delivery Details
             </button>
           </div>
         </div>
