@@ -48,6 +48,13 @@
             >
               Edit Supplier
             </button>
+            <button
+              class="mb-2 mr-1 btn btn-danger"
+              type="button"
+              (click)="deleteSupplier()"
+            >
+              Remove Supplier
+            </button>
           </div>
         </div>
       </div>
@@ -82,7 +89,7 @@
                           <div class="clearfix">
                             <p class="float-left">CATEGORY</p>
                             <p class="float-right mr text-primary">
-                              {{ suppliers?.category.catname }}
+                              {{ suppliers?.category?.catname }}
                             </p>
                           </div>
                         </div>
