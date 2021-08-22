@@ -52,6 +52,13 @@
         >
           Remove Item
         </button>
+        <button
+          type="button"
+          class="btn btn-warning mr-2 float-left"
+          (click)="productpicModal.show()"
+        >
+          Upload Image
+        </button>
       </div>
       <div class="col-md-12 mt-4" *ngIf="sysuser?.userlevel >= 4">
         <div class="card">
@@ -64,14 +71,14 @@
                     style="min-height: 300px"
                   >
                     <a
-                      href="{{ inventorylist?.pic_url }}"
+                      href="{{ inventorylist?.image }}"
                       target="_blank"
                       *ngIf="inventorylist?.image != null"
                     >
                       <img
                         class="img-thumbnail thumb256 mb-3"
-                        src="{{ inventorylist?.pic_url }}"
-                        alt="Image"
+                        src="{{ inventorylist?.image }}"
+                        alt="Red dot"
                       />
                     </a>
                     <img
@@ -160,6 +167,74 @@
                     to perform this action !!!
                   </p>
                 </alert>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal fade"
+    bsModal
+    #productpicModal="bs-modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="mySmallModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-warning">
+          <h4 class="modal-title">Upload Image</h4>
+          <button
+            type="button"
+            class="close"
+            aria-label="Close"
+            (click)="productpicModal.hide()"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row p-3">
+            <div class="col-sm-12">
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <!-- <p-fileUpload
+                    name="files"
+                    [url]="UPLDURL"
+                    (onUpload)="onUpload($event)"
+                    accept="image/*"
+                    maxFileSize="1000000"
+                  >
+                  </p-fileUpload> -->
+
+                  <input
+                    #imageInput
+                    name="files"
+                    type="file"
+                    accept="image/*"
+                    (change)="processFile(imageInput)"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row p-3">
+            <div class="col-sm-12">
+              <div class="form-group row">
+                <div class="col-sm-12">
+                  <button
+                    type="button"
+                    class="btn btn-danger mr-2 float-left"
+                    (click)="updateImage(productpicModal)"
+                  >
+                    Upload Image
+                  </button>
+                </div>
               </div>
             </div>
           </div>
