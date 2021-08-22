@@ -218,6 +218,10 @@
                     accept="image/*"
                     (change)="processFile(imageInput)"
                   />
+                  <i
+                    class="fa fa-spinner fa-spin mr-1 mt-1"
+                    *ngIf="waiting == true"
+                  ></i>
                 </div>
               </div>
             </div>

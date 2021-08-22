@@ -62,6 +62,7 @@ export class InventoryDetailComponent implements OnInit {
 
   public UPLDURL = "http://localhost:1337/api/v1/inventory/upload-image";
   blob: any;
+  waiting: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -146,6 +147,7 @@ export class InventoryDetailComponent implements OnInit {
   }
 
   processFile(imageInput: any) {
+    this.waiting = true;
     const file: File = imageInput.files[0];
     const reader = new FileReader();
 
@@ -159,6 +161,8 @@ export class InventoryDetailComponent implements OnInit {
       this.inventoryservice.uploadImage(this.selectedFile.file).subscribe(
         (res) => {
           console.log(res);
+
+          this.waiting = false;
         },
         (err) => {}
       );
