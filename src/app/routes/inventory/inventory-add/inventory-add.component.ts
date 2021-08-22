@@ -150,6 +150,7 @@ export class InventoryAddComponent implements OnInit {
   }
 
   onUpload(event) {
+    console.log(event);
     for (let file of event.files) {
       this.uploadedFiles.push(file);
     }
