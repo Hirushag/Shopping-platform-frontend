@@ -1,11 +1,14 @@
-<div class="row no-gutters align-items-center bg-danger-light h-100">
+<div
+  class="row no-gutters align-items-center h-100"
+  style="background-color: #03193a"
+>
   <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
   <div class="block-center wd-xl border">
     <!-- START panel-->
     <div class="card">
-      <div class="card-header text-center bg-danger"><h3>Easy Shop</h3></div>
+      <div class="card-header text-center bg-warning"><h3>Easy Shop</h3></div>
       <div class="card-body">
-        <p class="text-center text-dark">SIGN UP TO CONTINUE.</p>
+        <p class="text-center text-dark text-bold">SIGN UP TO CONTINUE.</p>
         <form
           [formGroup]="valForm"
           class="form-validate form-horizontal"
@@ -121,7 +124,16 @@
           </fieldset>
 
           <div class="card-footer text-center">
-            <button class="btn btn-primary" type="submit">Register</button>
+            <button class="btn btn-success btn-block" type="submit">
+              Register
+            </button>
+            <button
+              class="btn btn-danger btn-block"
+              type="submit"
+              [routerLink]="['/login']"
+            >
+              Login
+            </button>
           </div>
         </form>
       </div>

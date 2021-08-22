@@ -194,7 +194,6 @@
                       class="form-control"
                       name="payment_method"
                       [(ngModel)]="payment_method"
-                      (ngModelChange)="resetValues()"
                     >
                       <option value="null" disabled>
                         Please select the payment method
@@ -223,7 +222,7 @@
               *ngIf="payment_method == 'CASH ON DELIVERY'"
               class="btn ml-1 btn-green"
               type="button"
-              (click)="addDeliveryAddress.show()"
+              (click)="addDeliveryAddress.show(); CloseModal(addReferenceModal)"
             >
               Continue
             </button>

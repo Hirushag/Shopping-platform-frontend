@@ -62,10 +62,15 @@ export class LoginComponent implements OnInit {
     if (this.valForm.valid) {
       this.authenticationservice
         .login(value.username, value.password)
-        .pipe(first())
+
         .subscribe(
           (data) => {
-            this.router.navigate(["/settings/users/summary"]);
+            console.log(data.body);
+            if (data.body.userlevel == 1) {
+              this.router.navigate(["/shopping/summary"]);
+            } else {
+              this.router.navigate(["/settings/users/summary"]);
+            }
           },
           (error) => {
             //this.loading = false;

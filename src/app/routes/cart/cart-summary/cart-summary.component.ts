@@ -172,16 +172,12 @@ export class CartSummaryComponent implements OnInit {
     this.cartservice.getCartItems().subscribe((data) => {
       this.items = data.item;
       this.cart = data.cart;
-
-      console.log(this.cart);
     });
   }
 
   getTotals() {
     this.cartservice.calculateTotals().subscribe((data) => {
-      console.log(data);
       this.subtotal = data;
-      console.log(this.subtotal);
     });
   }
 
@@ -219,11 +215,10 @@ export class CartSummaryComponent implements OnInit {
           uniquekey: this.uniqueid,
         };
 
-        console.log(obj);
         this.cartservice.addDelivery(obj).subscribe(
           (data) => {
             if (data.status) {
-              modal.hide();
+              this.router.navigate(["/shopping/summary/"]);
               this.toaster = {
                 type: "success",
                 title: "Done ! !!",
@@ -234,10 +229,6 @@ export class CartSummaryComponent implements OnInit {
                 this.toaster.title,
                 this.toaster.text
               );
-
-              modal.hide();
-
-              this.router.navigate(["/shopping/summary/"]);
             } else {
               swal("Error Occured.", data.err);
             }
