@@ -28,11 +28,6 @@ export class InventoryAddComponent implements OnInit {
   sub_categories: any;
   suppliers: any;
 
-  selectedFile: ImageSnippet;
-
-  uploadedFiles: any[] = [];
-  public UPLDURL = "http://localhost:1337/api/v1/inventory/upload-image";
-
   constructor(
     fb: FormBuilder,
     private router: Router,
@@ -119,40 +114,6 @@ export class InventoryAddComponent implements OnInit {
           alert("API ERROR [ERRCODE:001]");
         }
       );
-    }
-  }
-
-  processFile(imageInput: any) {
-    const file: File = imageInput.files[0];
-    const reader = new FileReader();
-
-    reader.addEventListener("load", (event: any) => {
-      this.selectedFile = new ImageSnippet(event.target.result, file);
-
-      console.log(this.selectedFile);
-
-      var b64toBlob = require("b64-to-blob");
-
-      var contentType = "image/png";
-      var b64Data = this.selectedFile.src;
-      var blob = b64toBlob(b64Data, contentType);
-
-      var blobUrl = URL.createObjectURL(blob);
-      this.inventorylist.uploadImage(this.selectedFile.file).subscribe(
-        (res) => {
-          console.log(res);
-        },
-        (err) => {}
-      );
-    });
-
-    reader.readAsDataURL(file);
-  }
-
-  onUpload(event) {
-    console.log(event);
-    for (let file of event.files) {
-      this.uploadedFiles.push(file);
     }
   }
 }
