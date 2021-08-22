@@ -80,7 +80,7 @@ export class RegisterComponent implements OnInit {
               swal("User Added !!", "User has been added.", "success");
               this.valForm.reset();
               this.generateuniquekey();
-              this.router.navigate(["/login" + data.id]);
+              this.router.navigate(["/login"]);
             } else {
               this.toaster = {
                 type: "warning",
