@@ -99,7 +99,7 @@
             [columns]="cols"
             [value]="categoryList"
             [paginator]="true"
-            [rows]="8"
+            [rows]="5"
             [globalFilterFields]="['catname']"
             [responsive]="false"
             [autoLayout]="true"
@@ -266,7 +266,7 @@
             [columns]="xcols"
             [value]="subCategoryList"
             [paginator]="true"
-            [rows]="8"
+            [rows]="5"
             [globalFilterFields]="['name', 'category_name']"
             [responsive]="false"
             [autoLayout]="true"
@@ -322,6 +322,14 @@
                       "
                     >
                       <i class="fas fa-edit"></i>
+                    </button>
+
+                    <button
+                      class="mb-2 ml-2 btn btn-xs btn-danger"
+                      type="button"
+                      (click)="deleteSubCategories(rowData.id)"
+                    >
+                      <i class="fas fa-trash-alt"></i>
                     </button>
                   </div>
                 </td>

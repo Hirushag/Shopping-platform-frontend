@@ -284,35 +284,6 @@
               </div>
             </fieldset>
 
-            <fieldset>
-              <div class="row">
-                <div class="col-sm-6">
-                  <div class="form-group row">
-                    <label class="col-sm-3 col-form-label text-right"
-                      >Image</label
-                    >
-                    <div class="col-sm-9">
-                      <p-fileUpload
-                        name="files"
-                        [url]="UPLDURL"
-                        (onUpload)="onUpload($event)"
-                        accept="image/*"
-                        maxFileSize="1000000"
-                      >
-                        <ng-template pTemplate="content">
-                          <ul *ngIf="uploadedFiles.length">
-                            <li *ngFor="let file of uploadedFiles">
-                              {{ file.name }} - {{ file.size }} bytes
-                            </li>
-                          </ul>
-                        </ng-template>
-                      </p-fileUpload>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </fieldset>
-
             <div class="card-footer text-center">
               <button class="btn btn-primary" type="submit">Add Product</button>
             </div>

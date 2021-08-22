@@ -50,14 +50,19 @@
       </div>
     </div>
 
-    <div class="row" id="Container" *ngIf="store_items.length > 0">
+    <div class="row" id="Container" *ngIf="store_items?.length > 0">
       <div
         class="col-md-3 col-sm-6 mix portfolio-item"
         *ngFor="let items of store_items | arrayFilter: searchText"
       >
         <div class="portfolio-wrapper">
           <div class="portfolio-thumb">
-            <img src="assets/img/shop.jpg" />
+            <span *ngIf="items.image == null">
+              <img src="assets/img/shop.jpg"
+            /></span>
+            <span *ngIf="items.image != null">
+              <img src="{{ items?.image }}"
+            /></span>
           </div>
           <div class="label-text">
             <h3>{{ items.productname }}</h3>
@@ -74,7 +79,7 @@
         </div>
       </div>
     </div>
-    <div class="row" id="Container" *ngIf="store_items.length == 0">
+    <div class="row" id="Container" *ngIf="store_items?.length == 0">
       <div class="col-md-12">
         <h3>Items Not Available</h3>
       </div>

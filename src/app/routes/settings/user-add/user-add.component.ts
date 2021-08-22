@@ -11,6 +11,7 @@ import {
 import { UserService } from "../../../core/_services/user.service";
 import { AuthenticationService } from "../../../core/_services/authentication.service";
 import { SelectItem } from "primeng/components/common/selectitem";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-user-add",
@@ -37,7 +38,9 @@ export class UserAddComponent implements OnInit {
     fb: FormBuilder,
     private userservice: UserService,
     private authservice: AuthenticationService,
-    private toasterService: ToasterService
+    private toasterService: ToasterService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.valForm = fb.group({
       firstname: [null, Validators.required],
@@ -89,7 +92,7 @@ export class UserAddComponent implements OnInit {
             );
 
             this.valForm.reset();
-            //this.router.navigate(['/staff'])
+            this.router.navigate(["/settings/users/summary"]);
           } else {
             this.toaster = {
               type: "warning",

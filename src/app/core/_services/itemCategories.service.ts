@@ -49,6 +49,16 @@ export class ItemCategoriesService {
     );
   }
 
+  deleteCategory(category) {
+    const APIurl = this.BaseAPIurl.concat("delete-sub-categories");
+    return this.http.post<any>(APIurl, category).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   editCategory(category) {
     const APIurl = this.BaseAPIurl.concat("edit-category");
     return this.http.post<any>(APIurl, category).pipe(

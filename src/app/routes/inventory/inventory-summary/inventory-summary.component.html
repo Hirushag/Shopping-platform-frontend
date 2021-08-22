@@ -105,8 +105,17 @@
                     {{ rowData[col.field] }}
                   </div>
 
-                  <div *ngSwitchCase="'category'">{{ rowData.catname }}</div>
-                  <div *ngSwitchCase="'sub_category'">{{ rowData.name }}</div>
+                  <div *ngSwitchCase="'category'">
+                    {{ rowData.cat?.catname }}
+                  </div>
+                  <div *ngSwitchCase="'sub_category'">
+                    <span class="badge badge-info" *ngIf="!rowData.cat?.subcat"
+                      >NOT UPDATED</span
+                    >
+                    <span *ngIf="rowData.cat?.subcat">{{
+                      rowData.cat?.subcat
+                    }}</span>
+                  </div>
                   <div *ngSwitchCase="'actions'">
                     <div class="row no-gutters">
                       <div class="col-md-12 pr-1">

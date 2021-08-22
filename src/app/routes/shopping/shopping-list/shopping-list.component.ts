@@ -40,7 +40,7 @@ export class ShoppingListComponent implements OnInit {
     var obj = {
       category: this.category,
     };
-    console.log(obj);
+
     this.inventoryservice.getProductDetailsByCategory(obj).subscribe((data) => {
       this.store_items = data;
     });
@@ -53,7 +53,6 @@ export class ShoppingListComponent implements OnInit {
   }
 
   addToCart(items) {
-    console.log(items);
     var obj = {
       id: items.id,
       name: items.productname,

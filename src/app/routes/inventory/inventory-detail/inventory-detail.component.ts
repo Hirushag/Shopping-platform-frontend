@@ -1,12 +1,16 @@
+import { InventoryService } from "./../../../core/_services/inventory.service";
 import { Component, OnInit, Input } from "@angular/core";
 import { ToasterConfig, ToasterService } from "angular2-toaster";
 import { ActivatedRoute, Router } from "@angular/router";
-import { InventoryService } from "../../../core/_services/inventory.service";
+
 import { AuthenticationService } from "../../../core/_services/authentication.service";
 import { GlobalVariable } from "./../../../core/_services/globals";
 import { ColorsService } from "../../../shared/colors/colors.service";
 const swal = require("sweetalert");
 
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
+}
 @Component({
   selector: "app-inventory-detail",
   templateUrl: "./inventory-detail.component.html",
@@ -46,15 +50,19 @@ export class InventoryDetailComponent implements OnInit {
     positionClass: "toast-bottom-right",
     showCloseButton: true,
   });
-  uploadinprogress: boolean = false;
-  uploadprogressevent: number = 0;
+
   id: number;
   private sub: any;
-  baseUrl = GlobalVariable.BaseUrl;
-  public UPLDURL = GlobalVariable.BaseUrl + "api/v1/inventory/upload-image";
+
   product_list: any;
   uniqueid: string;
   draft_data: boolean;
+
+  selectedFile: ImageSnippet;
+
+  public UPLDURL = "http://localhost:1337/api/v1/inventory/upload-image";
+  blob: any;
+  waiting: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -87,7 +95,6 @@ export class InventoryDetailComponent implements OnInit {
       if (data) {
         // Do if true
         this.inventorylist = data;
-        console.log(this.inventorylist);
       }
     });
   }
@@ -115,181 +122,53 @@ export class InventoryDetailComponent implements OnInit {
     });
   }
 
-  UploadInProgress(event) {
-    this.uploadinprogress = true;
-    this.uploadprogressevent = event.progress;
-  }
+  updateImage(modal) {
+    var obj = {
+      id: this.id,
+      blob: this.blob,
+    };
+    this.inventoryservice.updateImageInventory(obj).subscribe((data) => {
+      if (data.status) {
+        modal.hide();
+        this.toaster = {
+          type: "success",
+          title: "Success !!",
+          text: "Added to database !",
+        };
+        this.toasterService.pop(
+          this.toaster.type,
+          this.toaster.title,
+          this.toaster.text
+        );
 
-  onBeforeSend(event) {
-    event.xhr.setRequestHeader(
-      "Authorization",
-      "Bearer " + sessionStorage.getItem("currentUser")
-    );
-    event.xhr.setRequestHeader("Access-Control-Allow-Origin", "* ");
-  }
-
-  onUpload(event, model) {
-    let data = event.originalEvent.body;
-    //console.log(event)
-    if (data.status) {
-      // add files to db and re fetch files list here
-
-      var obj = {
-        id: this.id,
-        imageArray: data.fileinfo,
-      };
-
-      this.inventoryservice.updateProductImage(obj).subscribe((data) => {
-        if (data.status) {
-          //get images related to the report
-          this.getData(this.id);
-          this.uploadinprogress = false;
-          model.hide();
-
-          this.toaster.success("Product Image Updated", "Success !!", {
-            positionClass: "toast-top-right",
-            closeButton: true,
-          });
-        } else {
-          this.toaster.warning(data.err, "ERROR !!", {
-            positionClass: "toast-top-right",
-            closeButton: true,
-          });
-        }
-      });
-    } else {
-      this.toaster.warning(
-        "An error occured while uploading files",
-        "ERROR !!",
-        {
-          positionClass: "toast-top-right",
-          closeButton: true,
-        }
-      );
-    }
-  }
-
-  enablepriceinput() {
-    this.enablepriceform = true;
-  }
-
-  AddPrices(lnform: any) {
-    if (this.storeitem.sellingprice != null) {
-      if (this.storeitem.quantity == null) {
-        this.storeitem.quantity = 0;
+        this.getData(this.id);
       }
-      if (this.storeitem.cost == null) {
-        if (this.inventorylist.itemtype == 1) {
-          this.storeitem.cost = (this.storeitem.sellingprice / 100) * 75;
-        } else {
-          this.storeitem.cost = (this.storeitem.sellingprice / 100) * 85;
-        }
-      }
-      this.storeitem.itemid = this.id;
-      console.log(this.storeitem);
-      this.inventoryservice.createItemDetail(this.storeitem).subscribe(
-        (data) => {
-          if (data.status) {
-            this.toaster = {
-              type: "success",
-              title: "Success !!",
-              text: "Added to database !",
-            };
-            this.toasterService.pop(
-              this.toaster.type,
-              this.toaster.title,
-              this.toaster.text
-            );
-            lnform.reset();
-            this.enablepriceform = false;
-            this.inventoryservice
-              .findItemDetail(this.id)
-              .subscribe((item) => (this.itemdetaillist = item));
-          } else {
-            this.toaster = {
-              type: "warning",
-              title: "ERROR !!",
-              text: data.err,
-            };
-            this.toasterService.pop(
-              this.toaster.type,
-              this.toaster.title,
-              this.toaster.text
-            );
-          }
+    });
+  }
+
+  processFile(imageInput: any) {
+    this.waiting = true;
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener("load", (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+
+      console.log(this.selectedFile);
+
+      this.blob = this.selectedFile.src;
+
+      this.inventoryservice.uploadImage(this.selectedFile.file).subscribe(
+        (res) => {
+          console.log(res);
+
+          this.waiting = false;
         },
-        (error) => {
-          alert("Error adding Pricing details [ERRCODE:001]");
-        }
+        (err) => {}
       );
-    }
-  }
+    });
 
-  edititem(updatingid, currentqty, currentcost, currentsellingprice) {
-    this.updateitem = true;
-    this.updatingid = updatingid;
-    this.newqty = currentqty;
-    this.newcost = currentcost;
-    this.newsellingprice = currentsellingprice;
-  }
-
-  updatecancel() {
-    this.updatingid = null;
-    this.updateitem = false;
-  }
-
-  updateItem() {
-    if (this.newqty != null && this.newsellingprice != null) {
-      if (this.newcost == null) {
-        if (this.inventorylist.itemtype == 1) {
-          this.newcost = (this.newsellingprice / 100) * 75;
-        } else {
-          this.newcost = (this.newsellingprice / 100) * 85;
-        }
-      }
-
-      this.newitemdetaillist.id = this.updatingid;
-      this.newitemdetaillist.quantity = this.newqty;
-      this.newitemdetaillist.cost = this.newcost;
-      this.newitemdetaillist.sellingprice = this.newsellingprice;
-      console.log(this.newitemdetaillist);
-      this.inventoryservice.editItemDetail(this.newitemdetaillist).subscribe(
-        (data) => {
-          if (data.status) {
-            this.toaster = {
-              type: "success",
-              title: "Success !!",
-              text: "Pricing Updated !",
-            };
-            this.toasterService.pop(
-              this.toaster.type,
-              this.toaster.title,
-              this.toaster.text
-            );
-            this.updatingid = null;
-            this.updateitem = false;
-
-            this.inventoryservice
-              .findItemDetail(this.id)
-              .subscribe((item) => (this.itemdetaillist = item));
-          } else {
-            this.toaster = {
-              type: "warning",
-              title: "ERROR !!",
-              text: data.err,
-            };
-            this.toasterService.pop(
-              this.toaster.type,
-              this.toaster.title,
-              this.toaster.text
-            );
-          }
-        },
-        (error) => {
-          alert("Error adding Item details [ERRCODE:001]");
-        }
-      );
-    }
+    reader.readAsDataURL(file);
   }
 
   generateuniquekey() {
@@ -298,8 +177,18 @@ export class InventoryDetailComponent implements OnInit {
     this.uniqueid = num1 + num2;
   }
 
-  itemDataAltered(item) {
-    item.synced_status = false;
-    this.draft_data = true;
+  deleteInventory() {
+    var obj = {
+      id: this.id,
+    };
+    this.inventoryservice.deleteInventory(obj).subscribe((data) => {
+      if (data.status) {
+        swal("Done!", "Inventory Deleted!", "success");
+
+        this.router.navigate(["/inventory/inventory/summary"]);
+      } else {
+        swal("Error Occured. Try Again!");
+      }
+    });
   }
 }

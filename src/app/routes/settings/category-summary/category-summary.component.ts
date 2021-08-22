@@ -347,4 +347,16 @@ export class CategorySummaryComponent implements OnInit {
       }
     );
   }
+
+  deleteSubCategories(id) {
+    console.log(id);
+    this.categoryService.deleteCategory({ id: id }).subscribe((data) => {
+      if (data.status) {
+        swal("Done!", "Inventory Deleted!", "success");
+        this.getAllSubCategories();
+      } else {
+        swal("Error Occured. Try Again!");
+      }
+    });
+  }
 }
