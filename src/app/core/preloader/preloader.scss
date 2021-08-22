@@ -6,7 +6,7 @@
 @import "../../shared/styles/bootstrap/_mixins";
 @import "../../shared/styles/app/variables";
 
-$preloader-bg: $danger;
+$preloader-bg: #03193a;
 $preloader-wd: 100px;
 $preloader-hg: 30px;
 
@@ -24,10 +24,26 @@ $preloader-hg: 30px;
     $preloader-bg 10%,
     darken($preloader-bg, 5%) 90%
   ); /* Chrome 10+, Saf5.1+ */
-  background-image: -moz-linear-gradient(90deg, $preloader-bg 10%, darken($preloader-bg, 5%) 90%); /* FF3.6+ */
-  background-image: -ms-linear-gradient(90deg, $preloader-bg 10%, darken($preloader-bg, 5%) 90%); /* IE10 */
-  background-image: -o-linear-gradient(90deg, $preloader-bg 10%, darken($preloader-bg, 5%) 90%); /* Opera 11.10+ */
-  background-image: linear-gradient(90deg, $preloader-bg 10%, darken($preloader-bg, 5%) 90%); /* W3C */
+  background-image: -moz-linear-gradient(
+    90deg,
+    $preloader-bg 10%,
+    darken($preloader-bg, 5%) 90%
+  ); /* FF3.6+ */
+  background-image: -ms-linear-gradient(
+    90deg,
+    $preloader-bg 10%,
+    darken($preloader-bg, 5%) 90%
+  ); /* IE10 */
+  background-image: -o-linear-gradient(
+    90deg,
+    $preloader-bg 10%,
+    darken($preloader-bg, 5%) 90%
+  ); /* Opera 11.10+ */
+  background-image: linear-gradient(
+    90deg,
+    $preloader-bg 10%,
+    darken($preloader-bg, 5%) 90%
+  ); /* W3C */
   z-index: 9999;
   transition: opacity 0.65s;
 }
