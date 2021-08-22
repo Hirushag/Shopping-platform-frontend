@@ -60,6 +60,16 @@ export class InventoryService {
     );
   }
 
+  deleteInventory(inventory) {
+    let APIurl = this.BaseAPIurl + "delete-inventory";
+    return this.http.post<any>(APIurl, JSON.stringify(inventory)).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
   getSuppliersByCategory(inventory) {
     let APIurl = this.BaseAPIurl + "get-suppliers-by-category";
     return this.http.post<any>(APIurl, JSON.stringify(inventory)).pipe(

@@ -302,4 +302,19 @@ export class InventoryDetailComponent implements OnInit {
     item.synced_status = false;
     this.draft_data = true;
   }
+
+  deleteInventory() {
+    var obj = {
+      id: this.id,
+    };
+    this.inventoryservice.deleteInventory(obj).subscribe((data) => {
+      if (data.status) {
+        swal("Done!", "Inventory Deleted!", "success");
+
+        this.router.navigate(["/inventory/inventory/summary"]);
+      } else {
+        swal("Error Occured. Try Again!");
+      }
+    });
+  }
 }

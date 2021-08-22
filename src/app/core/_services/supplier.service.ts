@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
-import {GlobalVariable} from './globals';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { GlobalVariable } from "./globals";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { catchError, map } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class SupplierService {
-
   private BaseAPIurl = GlobalVariable.BaseUrl + "api/v1/suppliers/";
 
   constructor(private http: HttpClient) {}
@@ -32,6 +31,16 @@ export class SupplierService {
 
   createSupplier(user) {
     let APIurl = this.BaseAPIurl + "add-supplier";
+    return this.http.post<any>(APIurl, JSON.stringify(user)).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  deleteSupplier(user) {
+    let APIurl = this.BaseAPIurl + "delete-supplier";
     return this.http.post<any>(APIurl, JSON.stringify(user)).pipe(
       map((response) => {
         return response;

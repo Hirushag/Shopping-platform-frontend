@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {ToasterConfig} from 'angular2-toaster';
-import {ActivatedRoute} from '@angular/router';
-import {AuthenticationService} from '../../../core/_services/authentication.service';
-import {SupplierService} from '../../../core/_services/supplier.service';
+import { Component, OnInit } from "@angular/core";
+import { ToasterConfig } from "angular2-toaster";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AuthenticationService } from "../../../core/_services/authentication.service";
+import { SupplierService } from "../../../core/_services/supplier.service";
 const swal = require("sweetalert");
 @Component({
-  selector: 'app-supplier-detail',
-  templateUrl: './supplier-detail.component.html',
-  styleUrls: ['./supplier-detail.component.scss']
+  selector: "app-supplier-detail",
+  templateUrl: "./supplier-detail.component.html",
+  styleUrls: ["./supplier-detail.component.scss"],
 })
 export class SupplierDetailComponent implements OnInit {
   sysuser: any;
@@ -27,11 +27,12 @@ export class SupplierDetailComponent implements OnInit {
   uniqueid: string;
   constructor(
     private route: ActivatedRoute,
-                 private authservice: AuthenticationService,
-    private supplierservice:SupplierService) { }
+    private authservice: AuthenticationService,
+    private supplierservice: SupplierService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-
     this.authservice.validateUser().subscribe((sysuser) => {
       this.sysuser = sysuser;
       this.LoadUI = true;
@@ -43,7 +44,7 @@ export class SupplierDetailComponent implements OnInit {
   }
 
   getData(id) {
-    this.supplierservice.getSupplier({id:this.id}).subscribe((data) => {
+    this.supplierservice.getSupplier({ id: this.id }).subscribe((data) => {
       console.log(data);
       this.suppliers = data;
     });
@@ -62,7 +63,6 @@ export class SupplierDetailComponent implements OnInit {
     var obj = {
       id: this.id,
       status: status,
-
     };
     swal(
       {
@@ -84,7 +84,6 @@ export class SupplierDetailComponent implements OnInit {
             if (data.status) {
               this.getData(this.id);
 
-
               swal(
                 "Done!",
                 "Status of the Supplier Record has been updated",
@@ -102,5 +101,18 @@ export class SupplierDetailComponent implements OnInit {
     );
   }
 
+  deleteSupplier() {
+    var obj = {
+      id: this.id,
+    };
+    this.supplierservice.deleteSupplier(obj).subscribe((data) => {
+      if (data.status) {
+        swal("Done!", "Supplier Deleted!", "success");
 
+        this.router.navigate(["/suppliers/summary/"]);
+      } else {
+        swal("Error Occured. Try Again!");
+      }
+    });
+  }
 }

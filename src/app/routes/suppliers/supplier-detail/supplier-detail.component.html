@@ -48,6 +48,13 @@
             >
               Edit Supplier
             </button>
+            <button
+              class="mb-2 mr-1 btn btn-danger"
+              type="button"
+              (click)="deleteSupplier()"
+            >
+              Remove Supplier
+            </button>
           </div>
         </div>
       </div>
@@ -80,10 +87,14 @@
                       <div class="row">
                         <div class="col-md-12 h4">
                           <div class="clearfix">
-                            <h4 class="float-left">CATEGORY</h4>
-                            <h3 class="float-right mr text-primary">
-                              {{ suppliers?.category.catname }}
-                            </h3>
+
+                            <p class="float-left">CATEGORY</p>
+                            <p class="float-right mr text-primary">
+                              {{ suppliers?.category?.catname }}
+                            </p>
+
+                          
+
                           </div>
                         </div>
                       </div>
