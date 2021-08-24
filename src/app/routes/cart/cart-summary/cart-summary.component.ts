@@ -156,6 +156,7 @@ export class CartSummaryComponent implements OnInit {
             title: "Deleted",
             text: "Item deleted",
           };
+          swal("done!", "Item deleted Sucessfully!", "success");
           // this.toasterService.pop(this.toaster.type, this.toaster.title, this.toaster.text);
           this.generateuniquekey();
         } else {

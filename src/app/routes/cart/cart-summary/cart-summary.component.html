@@ -28,11 +28,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="table-responsive">
-              <table
-                class="table scrolltable"
-                #scrollMe
-                [scrollTop]="scrollMe.scrollHeight"
-              >
+              <table class="table scrolltable" #scrollMe [scrollTop]="scrollMe.scrollHeight">
                 <thead>
                   <tr>
                     <h3>Order# {{ cart?.id }}</h3>
@@ -69,35 +65,24 @@
                     <td></td>
                     <td>
                       <div class="row">
-                        <button
-                          class="btn btn-sm btn-outline-success mb-1"
-                          (click)="add1Qty(i)"
-                        >
+                        <button class="btn btn-sm btn-outline-success mb-1" (click)="add1Qty(i)">
                           <em class="icon-plus"></em>
                         </button>
                       </div>
                       <div class="row">
-                        <button
-                          class="btn btn-sm btn-outline-warning"
-                          (click)="remove1Qty(i)"
-                          [disabled]="
+                        <button class="btn btn-sm btn-outline-warning" (click)="remove1Qty(i)" [disabled]="
                             (saved_invoice == true && invoice?.status == 4) ||
                             invoice?.status == -4
-                          "
-                        >
+                          ">
                           <em class="icon-minus"></em>
                         </button>
                       </div>
                     </td>
                     <td>
-                      <button
-                        class="btn btn-sm btn-danger mt-3 mr-2"
-                        (click)="removeFromCart(i, item)"
-                        [disabled]="
+                      <button class="btn btn-sm btn-danger mt-3 mr-2" (click)="removeFromCart(i, item)" [disabled]="
                           (saved_invoice == true && invoice?.status == 4) ||
                           invoice?.status == -4
-                        "
-                      >
+                        ">
                         <em class="icon-trash"></em>
                       </button>
                     </td>
@@ -121,10 +106,8 @@
           <div class="col-md-12 mt-1 p-1">
             <div class="row">
               <div class="col-md-12 text-center">
-                <button
-                  class="btn btn-block btn-primary text-md"
-                  (click)="addReferenceModal.show()"
-                >
+                <button class="btn btn-block btn-primary text-md" (click)="addReferenceModal.show()"
+                  [disabled]="subtotal.nettotal == null">
                   CHECKOUT
                 </button>
               </div>
@@ -137,28 +120,13 @@
     <!-- End of content -->
   </div>
 
-  <div
-    class="modal fade"
-    bsModal
-    #addReferenceModal="bs-modal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="mySmallModalLabel"
-    aria-hidden="true"
-  >
+  <div class="modal fade" bsModal #addReferenceModal="bs-modal" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
       <div class="modal-content">
-        <div
-          class="modal-header"
-          style="background-color: #1a4669; color: #fff"
-        >
+        <div class="modal-header" style="background-color: #1a4669; color: #fff">
           <h4 class="modal-title">Add Payment</h4>
-          <button
-            type="button"
-            class="close"
-            aria-label="Close"
-            (click)="addReferenceModal.hide()"
-          >
+          <button type="button" class="close" aria-label="Close" (click)="addReferenceModal.hide()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -167,24 +135,16 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="row">
-                  <label class="col-sm-4 col-form-label text-right"
-                    >Payment Method</label
-                  >
+                  <label class="col-sm-4 col-form-label text-right">Payment Method</label>
 
                   <div class="col-md-8">
-                    <select
-                      class="form-control"
-                      name="payment_method"
-                      [(ngModel)]="payment_method"
-                    >
+                    <select class="form-control" name="payment_method" [(ngModel)]="payment_method">
                       <option value="null" disabled>
                         Please select the payment method
                       </option>
                       <option value="CASH ON DELIVERY">CASH ON DELIVERY</option>
                       <option value="PAYPAL PAYMENT">
-                        <a href="https://www.paypal.com/uk/signin"
-                          >PAYPAL PAYMENT</a
-                        >
+                        <a href="https://www.paypal.com/uk/signin">PAYPAL PAYMENT</a>
                       </option>
                       <option value="ONLINE PAYMENT">ONLINE PAYMENT</option>
                     </select>
@@ -194,36 +154,20 @@
             </div>
           </div>
           <div class="mt-3 card-footer text-center">
-            <button
-              class="btn btn-warning"
-              type="button"
-              (click)="CloseModal(addReferenceModal)"
-            >
+            <button class="btn btn-warning" type="button" (click)="CloseModal(addReferenceModal)">
               Cancel
             </button>
-            <button
-              *ngIf="payment_method == 'CASH ON DELIVERY'"
-              class="btn ml-1 btn-green"
-              type="button"
-              (click)="addDeliveryAddress.show(); CloseModal(addReferenceModal)"
-            >
+            <button *ngIf="payment_method == 'CASH ON DELIVERY'" class="btn ml-1 btn-green" type="button"
+              (click)="addDeliveryAddress.show(); CloseModal(addReferenceModal)">
               Continue
             </button>
-            <button
-              *ngIf="payment_method == 'PAYPAL PAYMENT'"
-              class="btn ml-1 btn-green"
-              type="button"
-              (click)="addDeliveryAddress.show()"
-            >
+            <button *ngIf="payment_method == 'PAYPAL PAYMENT'" class="btn ml-1 btn-green" type="button"
+              (click)="addDeliveryAddress.show()">
               Add Delivery Details
             </button>
 
-            <button
-              *ngIf="payment_method == 'ONLINE PAYMENT'"
-              class="btn ml-1 btn-green"
-              type="button"
-              (click)="cardDetails.show()"
-            >
+            <button *ngIf="payment_method == 'ONLINE PAYMENT'" class="btn ml-1 btn-green" type="button"
+              (click)="cardDetails.show()">
               Add Card Details
             </button>
           </div>
@@ -232,28 +176,13 @@
     </div>
   </div>
 
-  <div
-    class="modal fade"
-    bsModal
-    #cardDetails="bs-modal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="mySmallModalLabel"
-    aria-hidden="true"
-  >
+  <div class="modal fade" bsModal #cardDetails="bs-modal" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
       <div class="modal-content">
-        <div
-          class="modal-header"
-          style="background-color: #1a4669; color: #fff"
-        >
+        <div class="modal-header" style="background-color: #1a4669; color: #fff">
           <h4 class="modal-title">Add Card Details</h4>
-          <button
-            type="button"
-            class="close"
-            aria-label="Close"
-            (click)="cardDetails.hide()"
-          >
+          <button type="button" class="close" aria-label="Close" (click)="cardDetails.hide()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -262,184 +191,175 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="row mt-2">
-                  <label class="col-sm-4 col-form-label text-right"
-                    >Account Holder Name</label
-                  >
+                  <label class="col-sm-4 col-form-label text-right">Account Holder Name</label>
 
                   <div class="col-md-8">
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="account_name"
-                      [(ngModel)]="account_name"
-                    />
+                    <input class="form-control" type="text" name="account_name" [(ngModel)]="account_name"
+                      #name_acc="ngModel" required />
+                    <div *ngIf="name_acc.dirty || name_acc.touched" class="text-danger">
+                      <div *ngIf="name_acc.errors?.required">
+                        Account Holder Name is required.
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="col-md-12">
                 <div class="row mt-2">
-                  <label class="col-sm-4 col-form-label text-right"
-                    >Card Number</label
-                  >
+                  <label class="col-sm-4 col-form-label text-right">Card Number</label>
 
                   <div class="col-md-8">
-                    <input
-                      class="form-control"
-                      type="number"
-                      name="card_number"
-                      [(ngModel)]="card_number"
-                    />
+                    <input class="form-control" type="number" name="card_number" [(ngModel)]="card_number"
+                      #name_cd="ngModel" required pattern="^[0-9]{12}$" />
+                    <div *ngIf="name_cd.dirty || name_cd.touched" class="text-danger">
+                      <div *ngIf="name_cd.errors?.required">
+                        Card Number is required.
+                      </div>
+                      <div *ngIf="name_cd.errors?.pattern">
+                        card number should be 12 digits.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="row mt-2">
+                <label class="col-sm-4 col-form-label text-right">Expire Month</label>
+
+                <div class="col-md-3">
+                  <select class="form-control" name="month" [(ngModel)]="month">
+                    <option value="null" disabled>
+                      Please select the expire month
+                    </option>
+                    <option value="January">01</option>
+                    <option value="February">02</option>
+                    <option value="March">03</option>
+                    <option value="April">04</option>
+                    <option value="May">05</option>
+                    <option value="June">06</option>
+                    <option value="July">07</option>
+                    <option value="August">08</option>
+                    <option value="September">09</option>
+                    <option value="October">10</option>
+                    <option value="November">11</option>
+                    <option value="December">12</option>
+                  </select>
+                </div>
+                <label class="col-sm-2 col-form-label text-right">Expire Year</label>
+                <div class="col-md-3">
+                  <select class="form-control" name="year" [(ngModel)]="year">
+                    <option value="null" disabled>
+                      Please select the expire year
+                    </option>
+                    <option value="2021">21</option>
+                    <option value="2022">22</option>
+                    <option value="2023">23</option>
+                    <option value="2024">24</option>
+                    <option value="2025">25</option>
+                    <option value="2026">26</option>
+                    <option value="2027">27</option>
+                    <option value="2028">28</option>
+                    <option value="2029">29</option>
+                    <option value="2030">30</option>
+                    <option value="2031">31</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="row mt-2">
+                <label class="col-sm-4 col-form-label text-right">CVV</label>
+
+                <div class="col-md-4">
+                  <input class="form-control" type="number" name="cvv" [(ngModel)]="cvv" #name_cvv="ngModel" required
+                    pattern="^[0-9]{3}$" />
+                  <div *ngIf="name_cvv.dirty || name_cvv.touched" class="text-danger">
+                    <div *ngIf="name_cvv.errors?.required">
+                      CVV Number is required.
+                    </div>
+                    <div *ngIf="name_cvv.errors?.pattern">
+                      CVV number should be 3 digits.
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="col-md-12">
                 <div class="row mt-2">
-                  <label class="col-sm-4 col-form-label text-right"
-                    >Expire Month</label
-                  >
-
-                  <div class="col-md-3">
-                    <select
-                      class="form-control"
-                      name="month"
-                      [(ngModel)]="month"
-                    >
-                      <option value="null" disabled>
-                        Please select the expire month
-                      </option>
-                      <option value="January">01</option>
-                      <option value="February">02</option>
-                      <option value="March">03</option>
-                      <option value="April">04</option>
-                      <option value="May">05</option>
-                      <option value="June">06</option>
-                      <option value="July">07</option>
-                      <option value="August">08</option>
-                      <option value="September">09</option>
-                      <option value="October">10</option>
-                      <option value="November">11</option>
-                      <option value="December">12</option>
-                    </select>
-                  </div>
-                  <label class="col-sm-2 col-form-label text-right"
-                    >Expire Year</label
-                  >
-                  <div class="col-md-3">
-                    <select class="form-control" name="year" [(ngModel)]="year">
-                      <option value="null" disabled>
-                        Please select the expire year
-                      </option>
-                      <option value="2021">21</option>
-                      <option value="2022">22</option>
-                      <option value="2023">23</option>
-                      <option value="2024">24</option>
-                      <option value="2025">25</option>
-                      <option value="2026">26</option>
-                      <option value="2027">27</option>
-                      <option value="2028">28</option>
-                      <option value="2029">29</option>
-                      <option value="2030">30</option>
-                      <option value="2031">31</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-12">
-                <div class="row mt-2">
-                  <label class="col-sm-4 col-form-label text-right">CVV</label>
-
-                  <div class="col-md-4">
-                    <input
-                      class="form-control"
-                      type="number"
-                      name="cvv"
-                      [(ngModel)]="cvv"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-12">
-                <div class="row mt-2">
-                  <label class="col-sm-4 col-form-label text-right"
-                    >Email</label
-                  >
+                  <label class="col-sm-4 col-form-label text-right">Email</label>
 
                   <div class="col-md-8">
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="aemail"
-                      [(ngModel)]="aemail"
-                    />
+                    <input class="form-control" type="email" name="aemail" placeholder="example@gmail.com"
+                      [(ngModel)]="aemail" #name_email="ngModel" required pattern="\S+@\S+\.\S+" />
+                    <div *ngIf="name_email.dirty || name_email.touched" class="text-danger">
+                      <div *ngIf="name_email.errors?.required">
+                        Email is required.
+                      </div>
+                      <div *ngIf="name_email.errors?.pattern">
+                        Invalid email pattern.
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="col-md-12">
                 <div class="row mt-2">
-                  <label class="col-sm-4 col-form-label text-right"
-                    >Contact</label
-                  >
+                  <label class="col-sm-4 col-form-label text-right">Contact</label>
 
                   <div class="col-md-8">
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="contact"
-                      [(ngModel)]="contact"
-                    />
+                    <input class="form-control" type="text" name="contact" [(ngModel)]="contact" #name_con="ngModel"
+                      required pattern="^[0-9]{10}$" />
+                    <div *ngIf="name_con.dirty || name_con.touched" class="text-danger">
+                      <div *ngIf="name_con.errors?.required">
+                        Contact Number is required.
+                      </div>
+                      <div *ngIf="name_con.errors?.pattern">
+                        Contact number should be 10 digits.
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="mt-3 card-footer text-center">
-            <button
-              class="btn btn-warning"
-              type="button"
-              (click)="CloseModal(cardDetails)"
-            >
+            <button class="btn btn-warning" type="button" (click)="CloseModal(cardDetails)">
               Cancel
             </button>
-            <button
-              class="btn ml-1 btn-green"
-              type="button"
-              (click)="addDeliveryAddress.show()"
-            >
+            <button class="btn ml-1 btn-green" type="button" [disabled]="
+                name_acc.value == null ||
+                name_cd.errors?.pattern ||
+                name_cd.value == null ||
+                name_cvv.errors?.pattern ||
+                name_cvv.value == null ||
+                name_con.errors?.pattern ||
+                name_con.value == null ||
+                name_email.errors?.pattern
+              " (click)="addDeliveryAddress.show()">
               Submit Invoice
             </button>
+            <!-- <button class="btn ml-1 btn-green" type="button" (click)="addDeliveryAddress.show()"> -->
+
+            <!-- Submit Invoice
+            </button> -->
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div
-    class="modal fade"
-    bsModal
-    #addDeliveryAddress="bs-modal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="mySmallModalLabel"
-    aria-hidden="true"
-  >
+  <div class="modal fade" bsModal #addDeliveryAddress="bs-modal" tabindex="-1" role="dialog"
+    aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
       <div class="modal-content">
-        <div
-          class="modal-header"
-          style="background-color: #1a4669; color: #fff"
-        >
+        <div class="modal-header" style="background-color: #1a4669; color: #fff">
           <h4 class="modal-title">Add Delivery Address</h4>
-          <button
-            type="button"
-            class="close"
-            aria-label="Close"
-            (click)="addDeliveryAddress.hide()"
-          >
+          <button type="button" class="close" aria-label="Close" (click)="addDeliveryAddress.hide()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -448,120 +368,109 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="row mt-2">
-                  <label class="col-sm-4 col-form-label text-right"
-                    >Contact Person Name</label
-                  >
+                  <label class="col-sm-4 col-form-label text-right">Contact Person Name</label>
 
                   <div class="col-md-8">
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="contace_person_name"
-                      [(ngModel)]="contace_person_name"
-                    />
+                    <input class="form-control" type="text" name="contace_person_name" [(ngModel)]="contace_person_name"
+                      #con_per_name="ngModel" required />
+                    <div *ngIf="con_per_name.dirty || con_per_name.touched" class="text-danger">
+                      <div *ngIf="con_per_name.errors?.required">
+                        Contact Person Name is required.
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="col-md-12">
                 <div class="row mt-2">
-                  <label class="col-sm-4 col-form-label text-right"
-                    >Contact Person Number</label
-                  >
+                  <label class="col-sm-4 col-form-label text-right">Contact Person Number</label>
 
                   <div class="col-md-8">
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="contace_person_number"
-                      [(ngModel)]="contace_person_number"
-                    />
+                    <input class="form-control" type="text" name="contace_person_number"
+                      [(ngModel)]="contace_person_number" #con_per_num="ngModel" required pattern="^[0-9]{10}$" />
+                    <div *ngIf="con_per_num.dirty || con_per_num.touched" class="text-danger">
+                      <div *ngIf="con_per_num.errors?.required">
+                        Contact Number is required.
+                      </div>
+                      <div *ngIf="con_per_num.errors?.pattern">
+                        Contact number should be 10 digits.
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="col-md-12">
                 <div class="row mt-2">
-                  <label class="col-sm-4 col-form-label text-right"
-                    >Address Line 1</label
-                  >
+                  <label class="col-sm-4 col-form-label text-right">Address Line 1</label>
 
                   <div class="col-md-8">
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="address1"
-                      [(ngModel)]="address1"
-                    />
+                    <input class="form-control" type="text" name="address1" [(ngModel)]="address1" #address_1="ngModel"
+                      required />
+                    <div *ngIf="address_1.dirty || address_1.touched" class="text-danger">
+                      <div *ngIf="address_1.errors?.required">
+                        Address Line 01 is required.
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="col-md-12">
-                <div class="row mt-2">
-                  <label class="col-sm-4 col-form-label text-right"
-                    >Address Line 2</label
-                  >
+                <div class="col-md-12">
+                  <div class="row mt-2">
+                    <label class="col-sm-4 col-form-label text-right">Address Line 2</label>
 
-                  <div class="col-md-8">
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="address2"
-                      [(ngModel)]="address2"
-                    />
+                    <div class="col-md-8">
+                      <input class="form-control" type="text" name="address2" [(ngModel)]="address2" />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="col-md-12">
-                <div class="row mt-2">
-                  <label class="col-sm-4 col-form-label text-right">City</label>
+                <div class="col-md-12">
+                  <div class="row mt-2">
+                    <label class="col-sm-4 col-form-label text-right">City</label>
 
-                  <div class="col-md-8">
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="city"
-                      [(ngModel)]="city"
-                    />
+                    <div class="col-md-8">
+                      <input class="form-control" type="text" name="city" [(ngModel)]="city" />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="col-md-12">
-                <div class="row mt-2">
-                  <label class="col-sm-4 col-form-label text-right"
-                    >Email</label
-                  >
+                <div class="col-md-12">
+                  <div class="row mt-2">
+                    <label class="col-sm-4 col-form-label text-right">Email</label>
 
-                  <div class="col-md-8">
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="email"
-                      [(ngModel)]="email"
-                    />
+                    <div class="col-md-8">
+                      <input class="form-control" type="text" name="email" [(ngModel)]="email" #n_email="ngModel"
+                        required pattern="\S+@\S+\.\S+" />
+                      <div *ngIf="n_email.dirty || n_email.touched" class="text-danger">
+                        <div *ngIf="n_email.errors?.required">
+                          Email is required.
+                        </div>
+                        <div *ngIf="n_email.errors?.pattern">
+                          Invalid email pattern.
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="mt-3 card-footer text-center">
-            <button
-              class="btn btn-warning"
-              type="button"
-              (click)="CloseModal(addDeliveryAddress)"
-            >
-              Cancel
-            </button>
-            <button
-              class="btn ml-1 btn-green"
-              type="button"
-              (click)="submitCardDetails(addReferenceModal)"
-            >
-              Finish
-            </button>
+            <div class="mt-3 card-footer text-center">
+              <button class="btn btn-warning" type="button" (click)="CloseModal(addDeliveryAddress)">
+                Cancel
+              </button>
+              <button class="btn ml-1 btn-green" type="button" [disabled]="
+                  con_per_name.value == null ||
+                  con_per_num.errors?.pattern ||
+                  con_per_num.value == null ||
+                  address_1.value == null ||
+                  n_email.errors?.pattern ||
+                  n_email.value == null
+                " (click)="submitCardDetails(addReferenceModal)">
+                Finish
+              </button>
+            </div>
           </div>
         </div>
       </div>
