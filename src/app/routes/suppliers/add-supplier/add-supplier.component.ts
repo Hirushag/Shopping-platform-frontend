@@ -34,7 +34,7 @@ export class AddSupplierComponent implements OnInit {
   ) {
     this.valForm = fb.group({
       supplier_name: [null, Validators.required],
-      phone: [null, Validators.required],
+      phone: [null, [Validators.pattern('^[0-9]{10}$'), Validators.required]],
       address: [null, Validators.required],
       category: [null, Validators.required],
     });

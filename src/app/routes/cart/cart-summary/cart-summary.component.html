@@ -1,3 +1,4 @@
+<!-- loading animation -->
 <div class="row" *ngIf="LoadUI == false">
   <div class="col-lg-12 no-gutters mt-5">
     <div class="d-flex align-middle align-items-center justify-content-center">
@@ -19,6 +20,7 @@
   </div>
 </div>
 
+<!-- Cart View -->
 <div *ngIf="LoadUI == true">
   <div>
     <br />
@@ -117,9 +119,10 @@
       </div>
     </div>
 
-    <!-- End of content -->
+    <!-- End of the cart view -->
   </div>
 
+  <!-- Start of the payment modal -->
   <div class="modal fade" bsModal #addReferenceModal="bs-modal" tabindex="-1" role="dialog"
     aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
@@ -175,7 +178,9 @@
       </div>
     </div>
   </div>
+  <!-- End of the payment modal -->
 
+  <!-- Start of the Card Details modal -->
   <div class="modal fade" bsModal #cardDetails="bs-modal" tabindex="-1" role="dialog"
     aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
@@ -353,6 +358,10 @@
     </div>
   </div>
 
+  <!-- END of the Card Details modal -->
+
+
+  <!-- Start of the Delivery Details modal -->
   <div class="modal fade" bsModal #addDeliveryAddress="bs-modal" tabindex="-1" role="dialog"
     aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-centered">
@@ -477,3 +486,4 @@
     </div>
   </div>
 </div>
+<!-- End of the Delivery Details modal -->
