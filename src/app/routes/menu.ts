@@ -91,8 +91,8 @@ export const menu = [
   Clients,
   Payments,
   Suppliers,
-  delivery,
+  //  delivery,
   Inventory,
-  feedbacks,
+  // feedbacks,
   Settings,
 ];
