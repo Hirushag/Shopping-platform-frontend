@@ -94,8 +94,11 @@
                         (valForm.controls['phone'].dirty ||
                           valForm.controls['phone'].touched)
                       "
-                      >This field is required</span
-                    >
+                      >This field is required</span>
+
+                    <span class = 'text-danger' *ngIf="valForm.controls['phone'].hasError('pattern')">
+                      phone number should be 10 digits
+                    </span>
                   </div>
                 </div>
               </div>

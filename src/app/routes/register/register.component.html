@@ -20,6 +20,7 @@
               <div class="col-sm-12">
                 <div class="form-group row">
                   <div class="col-sm-12">
+                    <label>First Name</label>
                     <input
                       class="form-control"
                       type="text"
@@ -47,6 +48,8 @@
               <div class="col-sm-12">
                 <div class="form-group row">
                   <div class="col-sm-12">
+
+                    <label>Last Name</label>
                     <input
                       class="form-control"
                       type="text"
@@ -74,10 +77,11 @@
               <div class="col-sm-12">
                 <div class="form-group row">
                   <div class="col-sm-12">
+                    <label>Username</label>
                     <input
                       class="form-control"
                       type="text"
-                      placeholder="Username"
+                      placeholder="Phone Number or Email"
                       formControlName="username"
                       [formControl]="valForm.controls['username']"
                     />
@@ -101,6 +105,7 @@
               <div class="col-sm-12">
                 <div class="form-group row">
                   <div class="col-sm-12">
+                    <label>Password</label>
                     <input
                       class="form-control"
                       type="password"
@@ -115,7 +120,7 @@
                         (valForm.controls['password'].dirty ||
                           valForm.controls['password'].touched)
                       "
-                      >Passwordis required</span
+                      >Password is required</span
                     >
                   </div>
                 </div>
