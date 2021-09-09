@@ -99,6 +99,21 @@ export class InventoryAddComponent implements OnInit {
     if (this.valForm.valid) {
       value.uniquekey = this.uniqueid;
 
+      console.log(value);
+
+      if (value.quantity < 0) {
+        swal("Error!", "Quantity is Not Valid", "warning");
+        return;
+      }
+      if (value.cost < 0) {
+        swal("Error!", "Cost is Not Valid", "warning");
+        return;
+      }
+      if (value.sellingprice < 0) {
+        swal("Error!", "Selling Price is Not Valid", "warning");
+        return;
+      }
+
       this.inventoryservice.createInventory(value).subscribe(
         (data) => {
           if (data.status) {
