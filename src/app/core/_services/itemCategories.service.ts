@@ -27,7 +27,7 @@ export class ItemCategoriesService {
     );
   }
 
-  // Get Category detail
+  // Get Category details
   findCategory(id) {
     let APIurl = this.BaseAPIurl + "get-category";
     return this.http.get<any>(APIurl + "?id=" + id).pipe(
@@ -49,6 +49,7 @@ export class ItemCategoriesService {
     );
   }
 
+  //delete Category
   deleteCategory(category) {
     const APIurl = this.BaseAPIurl.concat("delete-sub-categories");
     return this.http.post<any>(APIurl, category).pipe(
@@ -59,6 +60,7 @@ export class ItemCategoriesService {
     );
   }
 
+  // Edit Category
   editCategory(category) {
     const APIurl = this.BaseAPIurl.concat("edit-category");
     return this.http.post<any>(APIurl, category).pipe(
@@ -80,6 +82,7 @@ export class ItemCategoriesService {
     );
   }
 
+  //edit subCategory
   editSubCategory(category) {
     const APIurl = this.BaseAPIurl.concat("edit-sub-category");
     return this.http.post<any>(APIurl, category).pipe(
