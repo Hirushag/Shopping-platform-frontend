@@ -10,13 +10,16 @@ import {ConfirmDialogModule} from 'primeng/components/confirmdialog/confirmdialo
 import {DropdownModule} from 'primeng/components/dropdown/dropdown';
 import {ListboxModule} from 'primeng/components/listbox/listbox';
 import {FileUploadModule} from 'primeng/fileupload';
+import { EditFeedbackComponent } from './edit-feedback/edit-feedback.component';
+import { FeedbackSummaryComponent } from './feedback-summary/feedback-summary.component';
 
 
 
 const routes: Routes = [
   // Inventory Paths
   { path: "feedback/add", component: AddFeedbackComponent },
-
+  { path: "feedback/edit/:id", component: EditFeedbackComponent },
+  { path: "feedback/summary", component: FeedbackSummaryComponent },
 ];
 
 @NgModule({
@@ -34,7 +37,7 @@ const routes: Routes = [
     FileUploadModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [AddFeedbackComponent],
+  declarations: [AddFeedbackComponent, EditFeedbackComponent, FeedbackSummaryComponent],
   exports: [RouterModule],
 })
 export class FeedbackModule { }
