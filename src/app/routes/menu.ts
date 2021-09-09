@@ -43,9 +43,23 @@ const shop = {
   userlevel: 1,
 };
 
+const delivery = {
+  text: "DELIVERY",
+  link: "/delivery/summary",
+  icon: "icon-basket-loaded",
+  userlevel: 1,
+};
+
 const Clients = {
   text: "Customers",
   link: "/clients/summary",
+  icon: "icon-people",
+  userlevel: 6,
+};
+
+const feedbacks = {
+  text: "Feedbacks",
+  link: "/feedback/summary",
   icon: "icon-people",
   userlevel: 6,
 };
@@ -77,6 +91,8 @@ export const menu = [
   Clients,
   Payments,
   Suppliers,
+  //  delivery,
   Inventory,
+  // feedbacks,
   Settings,
 ];
