@@ -57,11 +57,15 @@ export class CategorySummaryComponent implements OnInit {
       this.LoadUI = true;
     });
 
+
+    //main category columns
     this.cols = [
       { field: "catname", header: "Category Name" },
       { field: "actions", header: "Actions" },
     ];
 
+
+    //sub category columns
     this.xcols = [
       { field: "name", header: "Sub Category Name" },
       { field: "category_name", header: "Category Name" },
@@ -73,24 +77,29 @@ export class CategorySummaryComponent implements OnInit {
     this.generateuniquekey();
   }
 
+
+  //get all categories
   getAllCategories() {
     this.categoryService
       .getAll()
       .subscribe((data) => (this.categoryList = data));
   }
 
+  //get all sub categories
   getAllSubCategories() {
     this.categoryService
       .getAllSubCategories({ category: null })
       .subscribe((data) => (this.subCategoryList = data));
   }
 
+  //generate unique key for unique requests
   generateuniquekey() {
     const num1 = new Date().valueOf();
     const num2 = Math.random().toString(36).substring(7);
     this.uniqueid = num1 + num2;
   }
 
+  //edit category function
   editCategory(modal) {
     if (this.edit_category_Name == null || this.edit_category_Name == "") {
       swal("Error Occured.", "Category Name is Required", "warning");
@@ -138,6 +147,7 @@ export class CategorySummaryComponent implements OnInit {
     );
   }
 
+  //edit sub category function
   editSubCategory(modal) {
     if (
       this.edit_subcategory_Name == null ||
@@ -196,6 +206,8 @@ export class CategorySummaryComponent implements OnInit {
     );
   }
 
+
+  //add category function
   submitForm($ev, value: any) {
     $ev.preventDefault();
     for (const c in this.valForm.controls) {
@@ -244,6 +256,8 @@ export class CategorySummaryComponent implements OnInit {
     }
   }
 
+
+  //show edit category modal
   editCategoryModalShow(data, modal) {
     this.edit_category_id = data.id;
     this.edit_category_Name = data.catname;
@@ -251,6 +265,7 @@ export class CategorySummaryComponent implements OnInit {
     modal.show();
   }
 
+  //show edit sub category modal
   editSubCategoryModalShow(data, modal) {
     this.edit_subcategory_id = data.id;
     this.edit_subcategory_Name = data.name;
@@ -259,6 +274,8 @@ export class CategorySummaryComponent implements OnInit {
     modal.show();
   }
 
+
+  //add sub categories function
   submitForm2($ev, value: any) {
     $ev.preventDefault();
     for (const c in this.valForm2.controls) {
@@ -348,6 +365,8 @@ export class CategorySummaryComponent implements OnInit {
     );
   }
 
+
+  //delete sub categories function
   deleteSubCategories(id) {
     console.log(id);
     this.categoryService.deleteCategory({ id: id }).subscribe((data) => {
