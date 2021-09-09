@@ -57,6 +57,13 @@ const Clients = {
   userlevel: 6,
 };
 
+const feedbacks = {
+  text: "Feedbacks",
+  link: "/feedback/summary",
+  icon: "icon-people",
+  userlevel: 6,
+};
+
 const Inventory = {
   text: "Inventory",
   link: "/inventory/inventory/summary",
@@ -86,5 +93,6 @@ export const menu = [
   Suppliers,
   delivery,
   Inventory,
+  feedbacks,
   Settings,
 ];
