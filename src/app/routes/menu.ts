@@ -45,7 +45,7 @@ const shop = {
 
 const delivery = {
   text: "DELIVERY",
-  link: "/delivery/summary",
+  link: "/delivery/delivery/summary",
   icon: "icon-basket-loaded",
   userlevel: 1,
 };
@@ -91,7 +91,7 @@ export const menu = [
   Clients,
   Payments,
   Suppliers,
-  //  delivery,
+    delivery,
   Inventory,
   // feedbacks,
   Settings,
