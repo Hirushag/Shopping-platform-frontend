@@ -46,6 +46,10 @@ export const routes = [
         path: "suppliers",
         loadChildren: "./suppliers/suppliers.module#SuppliersModule",
       },
+      {
+        path: "delivery",
+        loadChildren: "./delivery/delivery.module#DeliveryModule",
+      },
     ],
     canActivate: [AuthGuard],
   },
