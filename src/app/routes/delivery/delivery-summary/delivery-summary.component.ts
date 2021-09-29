@@ -130,5 +130,15 @@ export class DeliverySummaryComponent implements OnInit {
     });
   }
 
+  deleteRider(id) {
+    this.deliveryservice.deleteRider({ id: id }).subscribe((data) => {
+      if (data.status) {
+        swal("Done!", "Rider Successfully Deleted", "success");
+
+        this.getAllRiders();
+      }
+    });
+  }
+
 
 }
