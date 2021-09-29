@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AuthenticationService } from "../../../core/_services/authentication.service";
 import { ActivatedRoute } from "@angular/router";
 import { ClientService } from "../../../core/_services/client.service";
+const swal = require("sweetalert");
 
 @Component({
   selector: "app-client-detail",
@@ -35,21 +36,38 @@ export class ClientDetailComponent implements OnInit {
       this.id = +params["id"];
       this.getData(this.id);
     });
-
-    this.cols = [
-      { field: "invcode", header: "Invoice#" },
-      { field: "timestamp", header: "Date" },
-      { field: "nettotal", header: "Net Total" },
-      { field: "paidamt", header: "Paid Amount" },
-      { field: "openbalance", header: "Open Balance" },
-      // { field: "status", header: "Status", sortable: true },
-      // { field: "actions", header: "Actions", sortable: true }
-    ];
   }
 
   getData(clientId) {
     this.clientService.getClient(clientId).subscribe((data) => {
       this.client = data;
     });
+  }
+
+  changeStatus(status, id) {
+    var obj = {
+      id: this.id,
+      order_id: id,
+      status: status,
+    };
+
+    this.clientService.updateOrder(obj).subscribe(
+      (data) => {
+        if (data.status) {
+          this.getData(this.id);
+
+          swal(
+            "Done!",
+            "Status of the Order Record has been updated",
+            "success"
+          );
+        } else {
+          swal("Error Occured. Try Again!");
+        }
+      },
+      (error) => {
+        swal("Error Occured. Try Again!");
+      }
+    );
   }
 }
