@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { ClientAddComponent } from "./client-add/client-add.component";
+
 import { ListboxModule } from "primeng/components/listbox/listbox";
 import { DropdownModule } from "primeng/components/dropdown/dropdown";
 import { ConfirmDialogModule } from "primeng/components/confirmdialog/confirmdialog";
@@ -10,19 +10,14 @@ import { Routes, RouterModule } from "@angular/router";
 import { SharedModule } from "../../shared/shared.module";
 import { ClientSummaryComponent } from "./client-summary/client-summary.component";
 import { ClientDetailComponent } from "./client-detail/client-detail.component";
-import { ClientEditComponent } from "./client-edit/client-edit.component";
-
 
 const routes: Routes = [
-
   // Client paths
   { path: "summary", component: ClientSummaryComponent },
   { path: "detail/:id", component: ClientDetailComponent },
-  { path: "add", component: ClientAddComponent },
-  { path: "edit/:id", component: ClientEditComponent },
 ];
 @NgModule({
-  declarations: [ClientAddComponent, ClientSummaryComponent, ClientDetailComponent, ClientEditComponent],
+  declarations: [ClientSummaryComponent, ClientDetailComponent],
   imports: [
     SharedModule,
     TableModule,
@@ -32,10 +27,8 @@ const routes: Routes = [
     ConfirmDialogModule,
     DropdownModule,
     ListboxModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  exports: [
-    RouterModule
-  ]
+  exports: [RouterModule],
 })
-export class ClientsModule { }
+export class ClientsModule {}

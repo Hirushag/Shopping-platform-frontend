@@ -97,6 +97,12 @@
                       <div class="clearfix">
                         <h4 class="float-left">
                           Status
+
+                          <span
+                            class="badge badge-warning"
+                            *ngIf="delivery?.status == 5"
+                            >STILL NOT APPROVED</span
+                          >
                           <span
                             class="badge badge-danger"
                             *ngIf="delivery?.status == 0"
@@ -118,6 +124,11 @@
                             *ngIf="delivery?.status == 3"
                             >DELIVERY COMPLETED</span
                           >
+                          <span
+                            class="badge badge-green"
+                            *ngIf="delivery?.status == -4"
+                            >ORDER CANCLED</span
+                          >
                         </h4>
                       </div>
                     </div>
@@ -125,6 +136,35 @@
                 </div>
               </div>
               <hr />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="delivery?.status == 0 || delivery?.status == 5">
+        <div class="col-sm-8">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label text-right"
+              ><b>Rider</b>
+            </label>
+            <div class="col-sm-9">
+              <p-dropdown
+                [options]="riderslist"
+                name="selectedrider"
+                [(ngModel)]="selectedrider"
+                (ngModelChange)="check()"
+                [filter]="true"
+                [autoWidth]="true"
+                inputStyleClass="form-control"
+                styleClass="fw"
+                [style]="{ width: '100%' }"
+                inputStyle="{'width':'100%'}"
+                [resetFilterOnHide]="true"
+                [showClear]="true"
+                [autofocus]="true"
+                itemSize="10"
+                appendTo="body"
+              ></p-dropdown>
             </div>
           </div>
         </div>
@@ -148,7 +188,9 @@
                           [disabled]="
                             delivery?.status == 1 ||
                             delivery?.status == 2 ||
-                            delivery?.status == 3
+                            delivery?.status == 3 ||
+                            delivery?.status == 5 ||
+                            delivery?.status == -4
                           "
                         >
                           RIDER ASSIGNED
@@ -158,7 +200,10 @@
                           class="btn btn-purple ml-1"
                           (click)="changeStatus(2)"
                           [disabled]="
-                            delivery?.status == 2 || delivery?.status == 3
+                            delivery?.status == 2 ||
+                            delivery?.status == 3 ||
+                            delivery?.status == 5 ||
+                            delivery?.status == -4
                           "
                         >
                           DELIVERY IN PROGRASS
@@ -166,7 +211,11 @@
                         <button
                           class="btn btn-danger ml-1"
                           (click)="changeStatus(3)"
-                          [disabled]="delivery?.status == 3"
+                          [disabled]="
+                            delivery?.status == 3 ||
+                            delivery?.status == 5 ||
+                            delivery?.status == -4
+                          "
                         >
                           DELIVERY COMPLETED
                         </button>
