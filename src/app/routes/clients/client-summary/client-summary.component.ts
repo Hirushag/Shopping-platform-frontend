@@ -19,7 +19,7 @@ export class ClientSummaryComponent implements OnInit {
 
   constructor(
     private authservice: AuthenticationService,
-    private userservice: UserService
+    private clientservice: ClientService
   ) {}
 
   ngOnInit() {
@@ -29,21 +29,18 @@ export class ClientSummaryComponent implements OnInit {
     });
 
     this.cols = [
-      { field: "firstname", header: "#ID" },
-      { field: "lastname", header: "Invoice Code" },
-      { field: "username", header: "Client Name" },
-      { field: "username", header: "Date" },
-      { field: "username", header: "Action" },
+      { field: "id", header: "#ORDER ID" },
+      { field: "clientname", header: "Client Name" },
+      { field: "status", header: "Status" },
+      { field: "action", header: "Action" },
     ];
 
     this.getAll();
   }
 
   getAll() {
-    this.userservice
+    this.clientservice
       .getAll()
-      .subscribe((customers) => (this.userslist = customers.customers));
-
-    console.log(this.userslist);
+      .subscribe((customers) => (this.userslist = customers));
   }
 }
