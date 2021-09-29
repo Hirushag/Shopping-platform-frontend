@@ -59,7 +59,7 @@ const Clients = {
 
 const feedbacks = {
   text: "Feedbacks",
-  link: "/feedback/summary",
+  link: "/feedback/feedback/summary",
   icon: "icon-people",
   userlevel: 6,
 };
@@ -93,6 +93,6 @@ export const menu = [
   Suppliers,
     delivery,
   Inventory,
-  // feedbacks,
+   feedbacks,
   Settings,
 ];

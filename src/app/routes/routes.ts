@@ -50,6 +50,14 @@ export const routes = [
         path: "delivery",
         loadChildren: "./delivery/delivery.module#DeliveryModule",
       },
+      {
+        path: "wishlist",
+        loadChildren: "./wishlist/wishlist.module#WishlistModule",
+      },
+      {
+        path: "feedback",
+        loadChildren: "./feedback/feedback.module#FeedbackModule",
+      },
     ],
     canActivate: [AuthGuard],
   },

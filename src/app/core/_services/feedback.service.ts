@@ -7,37 +7,27 @@ import { GlobalVariable } from "./globals";
 @Injectable({
   providedIn: "root",
 })
-export class ItemsService {
-  private BaseAPIurl = GlobalVariable.BaseUrl + "api/v1/items/";
+export class FeedbackService {
+  private BaseAPIurl = GlobalVariable.BaseUrl + "api/v1/feedbacks/";
 
   constructor(private http: HttpClient) {}
+
   private handleError(error: HttpErrorResponse | any) {
-    console.error("ClientService::handleError", error);
+    console.error("FeedbacksService::handleError", error);
     return Observable.throw(error);
   }
 
-  addToCart(items) {
-    let APIurl = this.BaseAPIurl + "add-to-cart";
-    return this.http.post<any>(APIurl, JSON.stringify(items)).pipe(
+  addFeedback(data) {
+    let APIurl = this.BaseAPIurl + "add-feedback";
+    return this.http.post<any>(APIurl, data).pipe(
       map((response) => {
         return response;
       }),
       catchError(this.handleError)
     );
   }
-
-  addToWishlist(items) {
-    let APIurl = this.BaseAPIurl + "add-to-wish-list";
-    return this.http.post<any>(APIurl, JSON.stringify(items)).pipe(
-      map((response) => {
-        return response;
-      }),
-      catchError(this.handleError)
-    );
-  }
-
-  getAllWishlist() {
-    let APIurl = this.BaseAPIurl + "get-all-wishlists";
+  getFeedbacks() {
+    let APIurl = this.BaseAPIurl + "get-all-feedbacks";
     return this.http.get<any>(APIurl).pipe(
       map((response) => {
         return response;
@@ -46,9 +36,19 @@ export class ItemsService {
     );
   }
 
-  deleteIteFromWishlist(items) {
-    let APIurl = this.BaseAPIurl + "delete-item-from-wishlist";
-    return this.http.post<any>(APIurl, JSON.stringify(items)).pipe(
+  editFeedbacks(data) {
+    let APIurl = this.BaseAPIurl + "edit-feedback";
+    return this.http.post<any>(APIurl, data).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  deleteFeedbacks(data) {
+    let APIurl = this.BaseAPIurl + "delete-feedbacks";
+    return this.http.post<any>(APIurl, data).pipe(
       map((response) => {
         return response;
       }),
