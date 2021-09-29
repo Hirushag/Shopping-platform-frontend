@@ -57,6 +57,34 @@ export class DeliveryService {
     );
   }
 
+  deleteRider(data) {
+    let APIurl = this.BaseAPIurl + "delete-rider";
+    return this.http.post<any>(APIurl, data).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  getDelivery(data) {
+    let APIurl = this.BaseAPIurl + "get-delivery";
+    return this.http.post<any>(APIurl, data).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
+  changeStatus(data) {
+    let APIurl = this.BaseAPIurl + "update-delivery-status";
+    return this.http.post<any>(APIurl, data).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
+  }
 
 
 
