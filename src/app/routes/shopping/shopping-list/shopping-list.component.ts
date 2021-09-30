@@ -85,4 +85,25 @@ export class ShoppingListComponent implements OnInit {
     const num2 = Math.random().toString(36).substring(7);
     this.uniqueid = num1 + num2;
   }
+  addToWishlist(items) {
+    var obj = {
+      id: items.id,
+    };
+    this.itemsservice.addToWishlist(obj).subscribe((data) => {
+      if (data.status == true) {
+        swal(
+          "Added To the Wishlist !!",
+          "Item has been added to the Wishlist.",
+          "success"
+        );
+        this.generateuniquekey();
+      } else if (data.status == false) {
+        swal(
+          "Item Already exsist in Wishlis !!",
+          "Item Already exsist in Wishlis !!",
+          "warning"
+        );
+      }
+    });
+  }
 }

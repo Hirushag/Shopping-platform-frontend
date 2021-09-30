@@ -1,3 +1,233 @@
-<p>
-  delivery-detal works!
-</p>
+<script src="../../clients/client-detail/client-detail.component.ts"></script>
+<div class="content-heading mb-2">View Delivery</div>
+<div class="row" *ngIf="LoadUI == false">
+  <div class="col-lg-12 no-gutters mt-5">
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <div class="ball-grid-pulse">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <h2 class="text-muted">Loading interfaces...</h2>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="LoadUI == true">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="float-right">
+            <button
+              class="mb-2 mr-1 btn btn-outline-primary"
+              type="button"
+              [routerLink]="['/delivery/delivery/summary']"
+            >
+              Back to Deliveries
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mt-3 card padding-prints">
+            <div class="card-body">
+              <div class="col-sm-12 text-center printonly">
+                <h3>Delivery {{ delivery?.id }}</h3>
+                <hr />
+              </div>
+              <h3 class="text-right">SUPPLIER# : {{ delivery?.id }}</h3>
+              <hr />
+              <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                  <div class="row">
+                    <div class="col-lg-4 col-sm-4 br pv">
+                      <div class="row">
+                        <div
+                          class="col-md-1 text-center visible-md visible-lg"
+                        ></div>
+                        <div class="col-md-11">
+                          <div class="clearfix">
+                            <h2>
+                              <h4>CLIENT NAME:</h4>
+                              {{ delivery?.name }}
+                            </h2>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 br pv">
+                      <div class="row">
+                        <div class="col-md-12 h4">
+                          <div class="clearfix">
+                            <h4 class="float-left">CLIENT ADDRESS:</h4>
+                            <h3 class="float-left mr text-success">
+                              {{ delivery?.address1 }},{{
+                                delivery?.address2
+                              }},{{ delivery?.city }}
+                            </h3>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 h4">
+                          <div class="clearfix">
+                            <h4 class="float-left">
+                              PHONE :
+                              <h3 class="text-danger">
+                                {{ delivery?.number }}
+                              </h3>
+                            </h4>
+                            <br />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 pv">
+                      <div class="clearfix">
+                        <h4 class="float-left">
+                          Status
+
+                          <span
+                            class="badge badge-warning"
+                            *ngIf="delivery?.status == 5"
+                            >STILL NOT APPROVED</span
+                          >
+                          <span
+                            class="badge badge-danger"
+                            *ngIf="delivery?.status == 0"
+                            >PENDING</span
+                          >
+
+                          <span
+                            class="badge badge-success"
+                            *ngIf="delivery?.status == 1"
+                            >RIDER ASSIGNED</span
+                          >
+                          <span
+                            class="badge badge-purple"
+                            *ngIf="delivery?.status == 2"
+                            >DELIVERY IN PROGRASS</span
+                          >
+                          <span
+                            class="badge badge-danger"
+                            *ngIf="delivery?.status == 3"
+                            >DELIVERY COMPLETED</span
+                          >
+                          <span
+                            class="badge badge-green"
+                            *ngIf="delivery?.status == -4"
+                            >ORDER CANCLED</span
+                          >
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="delivery?.status == 0 || delivery?.status == 5">
+        <div class="col-sm-8">
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label text-right"
+              ><b>Rider</b>
+            </label>
+            <div class="col-sm-9">
+              <p-dropdown
+                [options]="riderslist"
+                name="selectedrider"
+                [(ngModel)]="selectedrider"
+           
+                [filter]="true"
+                [autoWidth]="true"
+                inputStyleClass="form-control"
+                styleClass="fw"
+                [style]="{ width: '100%' }"
+                inputStyle="{'width':'100%'}"
+                [resetFilterOnHide]="true"
+                [showClear]="true"
+                [autofocus]="true"
+                itemSize="10"
+                appendTo="body"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12" id="printreceipt">
+          <div class="mt-3 card padding-prints">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12 text-center visible-md visible-lg"></div>
+                <div class="col-md-12">
+                  <div class="clearfix text-center">
+                    <h4>Change Status</h4>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button
+                          class="btn btn-success"
+                          (click)="changeStatus(1)"
+                          [disabled]="
+                            delivery?.status == 1 ||
+                            delivery?.status == 2 ||
+                            delivery?.status == 3 ||
+                            delivery?.status == 5 ||
+                            delivery?.status == -4
+                          "
+                        >
+                          RIDER ASSIGNED
+                        </button>
+
+                        <button
+                          class="btn btn-purple ml-1"
+                          (click)="changeStatus(2)"
+                          [disabled]="
+                            delivery?.status == 2 ||
+                            delivery?.status == 3 ||
+                            delivery?.status == 5 ||
+                            delivery?.status == -4
+                          "
+                        >
+                          DELIVERY IN PROGRASS
+                        </button>
+                        <button
+                          class="btn btn-danger ml-1"
+                          (click)="changeStatus(3)"
+                          [disabled]="
+                            delivery?.status == 3 ||
+                            delivery?.status == 5 ||
+                            delivery?.status == -4
+                          "
+                        >
+                          DELIVERY COMPLETED
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

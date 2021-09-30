@@ -70,6 +70,12 @@
               >{{ items.sellingprice | number: "1.2-2" }} LKR</span
             >
             <button
+            class="btn btn-md btn-danger float-right ml-2 mb-2"
+            (click)="addToWishlist(items)"
+          >
+            <i class="fas fa-heart"></i>
+          </button>
+            <button
               class="btn btn-md btn-success float-right ml-2 mb-2"
               (click)="addToCart(items)"
             >

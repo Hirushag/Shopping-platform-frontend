@@ -38,21 +38,10 @@ export class ClientService {
     );
   }
 
-  // Create client
-  addClient(client) {
-    let APIurl = this.BaseAPIurl + "add-client";
-    return this.http.post<any>(APIurl, JSON.stringify(client)).pipe(
-      map((response) => {
-        return response;
-      }),
-      catchError(this.handleError)
-    );
-  }
-
   // Edit client
-  editClient(client) {
-    let APIurl = this.BaseAPIurl + "edit-client";
-    return this.http.post<any>(APIurl, JSON.stringify(client)).pipe(
+  updateOrder(data) {
+    let APIurl = this.BaseAPIurl + "update-order-status";
+    return this.http.post<any>(APIurl, JSON.stringify(data)).pipe(
       map((response) => {
         return response;
       }),

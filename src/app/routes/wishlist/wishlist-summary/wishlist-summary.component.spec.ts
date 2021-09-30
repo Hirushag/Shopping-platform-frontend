@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddFeedbackComponent } from './add-feedback.component';
+import { WishlistSummaryComponent } from './wishlist-summary.component';
 
-describe('AddFeedbackComponent', () => {
-  let component: AddFeedbackComponent;
-  let fixture: ComponentFixture<AddFeedbackComponent>;
+describe('WishlistSummaryComponent', () => {
+  let component: WishlistSummaryComponent;
+  let fixture: ComponentFixture<WishlistSummaryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddFeedbackComponent ]
+      declarations: [ WishlistSummaryComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddFeedbackComponent);
+    fixture = TestBed.createComponent(WishlistSummaryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

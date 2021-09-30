@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditFeedbackComponent } from './edit-feedback.component';
+import { ReportMenuComponent } from './report-menu.component';
 
-describe('EditFeedbackComponent', () => {
-  let component: EditFeedbackComponent;
-  let fixture: ComponentFixture<EditFeedbackComponent>;
+describe('ReportMenuComponent', () => {
+  let component: ReportMenuComponent;
+  let fixture: ComponentFixture<ReportMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditFeedbackComponent ]
+      declarations: [ ReportMenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditFeedbackComponent);
+    fixture = TestBed.createComponent(ReportMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

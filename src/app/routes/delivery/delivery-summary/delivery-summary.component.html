@@ -129,6 +129,13 @@
                         >
                           <i class="fas fa-edit"></i>
                         </button>
+
+                        <button
+                          class="btn btn-danger btn-xs mb-1 ml-1"
+                          (click)="deleteRider(rowData.id)"
+                        >
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -209,6 +216,11 @@
                   </div>
                   <div *ngSwitchCase="'status'">
                     <span
+                      class="badge badge-warning"
+                      *ngIf="rowData?.status == 5"
+                      >STILL NOT APPROVED</span
+                    >
+                    <span
                       class="badge badge-danger"
                       *ngIf="rowData?.status == 0"
                       >PENDING</span
@@ -225,6 +237,11 @@
                       class="badge badge-success"
                       *ngIf="rowData?.status == 3"
                       >DELIVERY COMPLETED</span
+                    >
+                    <span
+                      class="badge badge-green"
+                      *ngIf="rowData?.status == -4"
+                      >ORDER CANCLED</span
                     >
                   </div>
                   <div *ngSwitchCase="'actions'">
