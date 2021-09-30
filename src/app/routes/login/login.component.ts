@@ -65,7 +65,6 @@ export class LoginComponent implements OnInit {
 
         .subscribe(
           (data) => {
-            console.log(data.body);
             if (data.body.userlevel == 1) {
               this.router.navigate(["/shopping/summary"]);
             } else {

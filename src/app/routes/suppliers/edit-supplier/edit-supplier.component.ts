@@ -78,7 +78,6 @@ export class EditSupplierComponent implements OnInit {
     if (this.valForm.valid) {
       value.id = this.id;
 
-      console.log(value);
       this.supplierservice.EditSupplier(value).subscribe(
         (data) => {
           if (data.status) {

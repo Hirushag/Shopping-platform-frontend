@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ToasterConfig, ToasterService } from 'angular2-toaster';
-import { AuthenticationService } from '../../../core/_services/authentication.service';
-import { FeedbackService } from '../../../core/_services/feedback.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { ToasterConfig, ToasterService } from "angular2-toaster";
+import { AuthenticationService } from "../../../core/_services/authentication.service";
+import { FeedbackService } from "../../../core/_services/feedback.service";
 const swal = require("sweetalert");
 @Component({
-  selector: 'app-feedback-summary',
-  templateUrl: './feedback-summary.component.html',
-  styleUrls: ['./feedback-summary.component.scss']
+  selector: "app-feedback-summary",
+  templateUrl: "./feedback-summary.component.html",
+  styleUrls: ["./feedback-summary.component.scss"],
 })
 export class FeedbackSummaryComponent implements OnInit {
   sysuser: any;
@@ -28,14 +28,12 @@ export class FeedbackSummaryComponent implements OnInit {
     private route: ActivatedRoute,
     private toasterService: ToasterService,
     private feedbackservice: FeedbackService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.authservice.validateUser().subscribe((sysuser) => {
       this.sysuser = sysuser;
       this.LoadUI = true;
-
-      console.log(this.sysuser);
     });
 
     this.getAllFeedbacks();
@@ -61,7 +59,6 @@ export class FeedbackSummaryComponent implements OnInit {
   }
 
   editFeedbacks(id, feedback) {
-    console.log(feedback);
     this.show_edit = true;
     this.feedback_id = id;
     this.edit_feedback = feedback;
@@ -91,5 +88,4 @@ export class FeedbackSummaryComponent implements OnInit {
       }
     });
   }
-
 }

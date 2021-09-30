@@ -68,7 +68,6 @@ export class UserEditComponent implements OnInit {
         if (data) {
           // Do if true
 
-
           this.user = data;
           this.valForm.patchValue({ firstname: this.user.firstname });
           this.valForm.patchValue({ lastname: this.user.lastname });
@@ -99,8 +98,6 @@ export class UserEditComponent implements OnInit {
     if (this.valForm.valid) {
       value.id = this.id;
 
-
-      console.log(value)
       this.userservice.editUser(value).subscribe(
         (data) => {
           if (data.status) {
