@@ -98,7 +98,7 @@ export class InventoryReportComponent implements OnInit {
   }
   printreport() {
     let printContents, popupWin;
-    printContents = document.getElementById("printrepo").innerHTML;
+    printContents = document.getElementById("printreport").innerHTML;
     popupWin = window.open("", "_blank", "top=0,left=0,height=100%,width=auto");
     popupWin.document.open();
     popupWin.document.write(`
