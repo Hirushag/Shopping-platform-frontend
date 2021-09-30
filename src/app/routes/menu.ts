@@ -34,6 +34,13 @@ const Settings = {
       link: "/settings/inventory/categories",
       userlevel: 8,
     },
+    {
+      text: "System Logs",
+
+      link: "/settings/system-logs/summary",
+
+      userlevel: 8,
+    },
   ],
 };
 
