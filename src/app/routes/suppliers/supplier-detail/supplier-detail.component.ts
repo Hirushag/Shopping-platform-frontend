@@ -45,7 +45,6 @@ export class SupplierDetailComponent implements OnInit {
 
   getData(id) {
     this.supplierservice.getSupplier({ id: this.id }).subscribe((data) => {
-      console.log(data);
       this.suppliers = data;
     });
   }

@@ -72,7 +72,6 @@ export class InventoryEditComponent implements OnInit {
 
           this.getSuppliersByCategory(this.inventory.cat.id);
 
-          console.log(this.inventory);
           this.getSubCategories(this.inventory.cat_id);
           this.valForm.patchValue({ productcode: this.inventory.productcode });
           this.valForm.patchValue({ productname: this.inventory.productname });

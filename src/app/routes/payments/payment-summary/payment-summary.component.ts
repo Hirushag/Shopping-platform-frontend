@@ -43,7 +43,6 @@ export class PaymentSummaryComponent implements OnInit {
     const refreshInterval$ = timer(0, 60000);
     this.sub = refreshInterval$.subscribe(() =>
       this.paymentservice.getAll().subscribe((data) => {
-        console.log(data);
         this.payments = data.payments;
       })
     );

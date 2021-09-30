@@ -37,7 +37,6 @@ export class SystemLogsComponent implements OnInit {
 
   getData() {
     this.systemlogsService.getAll().subscribe((data) => {
-      console.log(data);
       this.system_logs = data;
     });
   }

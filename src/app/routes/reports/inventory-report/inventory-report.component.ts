@@ -33,7 +33,6 @@ export class InventoryReportComponent implements OnInit {
 
   getAllSuppliers() {
     this.supplierservice.getAllSuppliers().subscribe((data) => {
-      console.log(data);
       this.suppliers = [];
       this.suppliers.push({ label: "All", value: null });
       for (var i = 0; i < data.length; i++) {
@@ -53,7 +52,7 @@ export class InventoryReportComponent implements OnInit {
 
     this.reportService.inventoryReport(obj).subscribe((data) => {
       this.inventory = data.inventory;
-      this.payments = data.payment;
+
       this.inventory_cost = data.inventory_cost;
     });
   }
@@ -98,7 +97,7 @@ export class InventoryReportComponent implements OnInit {
   }
   printreport() {
     let printContents, popupWin;
-    printContents = document.getElementById("printrepo").innerHTML;
+    printContents = document.getElementById("printreport").innerHTML;
     popupWin = window.open("", "_blank", "top=0,left=0,height=100%,width=auto");
     popupWin.document.open();
     popupWin.document.write(`

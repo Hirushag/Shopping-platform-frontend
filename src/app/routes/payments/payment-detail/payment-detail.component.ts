@@ -55,7 +55,6 @@ export class PaymentDetailComponent implements OnInit {
 
   getData(id) {
     this.paymentservice.getPayment(this.id).subscribe((data) => {
-      console.log(data);
       this.payment = data.payment;
     });
   }
