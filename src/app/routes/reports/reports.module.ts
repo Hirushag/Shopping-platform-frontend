@@ -12,6 +12,7 @@ import { SharedModule } from "../../shared/shared.module";
 import { ReportMenuComponent } from "./report-menu/report-menu.component";
 import { SupplierReportComponent } from "./supplier-report/supplier-report.component";
 import { PaymentReportComponent } from "./payment-report/payment-report.component";
+import { DeliveryReportComponent } from "./delivery-report/delivery-report.component";
 
 const routes: Routes = [
   // paths
@@ -30,6 +31,15 @@ const routes: Routes = [
 
     component: PaymentReportComponent,
   },
+
+  {
+
+    path: "delivery-report/report",
+
+    component: DeliveryReportComponent,
+
+  },
+
 ];
 @NgModule({
   imports: [
@@ -48,6 +58,7 @@ const routes: Routes = [
     SupplierReportComponent,
     ReportMenuComponent,
     PaymentReportComponent,
+    DeliveryReportComponent
   ],
 
   exports: [RouterModule],
