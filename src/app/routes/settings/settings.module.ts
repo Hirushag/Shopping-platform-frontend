@@ -14,7 +14,7 @@ import { UserSummaryComponent } from "./user-summary/user-summary.component";
 
 import { DndModule } from "ng2-dnd";
 import { CategorySummaryComponent } from "./category-summary/category-summary.component";
-
+import { SystemLogsComponent } from "./system-logs/system-logs.component";
 
 const routes: Routes = [
   // // System User paths
@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: "users/add", component: UserAddComponent },
   { path: "users/edit/:id", component: UserEditComponent },
   { path: "inventory/categories", component: CategorySummaryComponent },
+  { path: "system-logs/summary", component: SystemLogsComponent },
 ];
 
 @NgModule({
@@ -44,7 +45,8 @@ const routes: Routes = [
     UserEditComponent,
     UserSummaryComponent,
     UserDetailComponent,
-    CategorySummaryComponent
+    CategorySummaryComponent,
+    SystemLogsComponent,
   ],
   exports: [RouterModule],
 })

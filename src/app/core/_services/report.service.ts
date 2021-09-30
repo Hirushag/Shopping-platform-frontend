@@ -26,20 +26,24 @@ export class ReportService {
     );
   }
   supplierReport(data) {
-
     const APIurl = this.BaseAPIurl.concat("supplier-report");
 
     return this.http.post<any>(APIurl, data).pipe(
-
       map((response) => {
-
         return response;
-
       }),
 
       catchError(this.handleError)
-
     );
+  }
 
+  paymentReport(data) {
+    const APIurl = this.BaseAPIurl.concat("payment-report");
+    return this.http.post<any>(APIurl, data).pipe(
+      map((response) => {
+        return response;
+      }),
+      catchError(this.handleError)
+    );
   }
 }
