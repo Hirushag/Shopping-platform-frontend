@@ -16,6 +16,7 @@ const Suppliers = {
   icon: "icon-wallet",
   userlevel: 6,
 };
+
 const Settings = {
   text: "Settings",
   link: "/settings/users/summary",
@@ -83,6 +84,13 @@ const space = {
   icon: "",
 };
 
+const Reports = {
+  text: "Reports",
+  link: "/reports/reports-menu",
+  icon: "fas fa-chart-area",
+  userlevel: 6,
+};
+
 export const menu = [
   headingMain,
   space,
@@ -91,8 +99,9 @@ export const menu = [
   Clients,
   Payments,
   Suppliers,
-    delivery,
+  delivery,
   Inventory,
-   feedbacks,
+  feedbacks,
+  Reports,
   Settings,
 ];

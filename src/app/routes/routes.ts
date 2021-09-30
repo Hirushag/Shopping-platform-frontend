@@ -58,6 +58,10 @@ export const routes = [
         path: "feedback",
         loadChildren: "./feedback/feedback.module#FeedbackModule",
       },
+      {
+        path: "reports",
+        loadChildren: "./reports/reports.module#ReportsModule",
+      },
     ],
     canActivate: [AuthGuard],
   },
