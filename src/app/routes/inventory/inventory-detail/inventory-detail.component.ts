@@ -102,7 +102,7 @@ export class InventoryDetailComponent implements OnInit {
   getAllProducts() {
     this.inventoryservice.getAll().subscribe((data) => {
       this.product_list = data;
-      console.log(this.product_list);
+
       if (data) {
         // Do if true
         this.product_name_list = [];
@@ -154,14 +154,10 @@ export class InventoryDetailComponent implements OnInit {
     reader.addEventListener("load", (event: any) => {
       this.selectedFile = new ImageSnippet(event.target.result, file);
 
-      console.log(this.selectedFile);
-
       this.blob = this.selectedFile.src;
 
       this.inventoryservice.uploadImage(this.selectedFile.file).subscribe(
         (res) => {
-          console.log(res);
-
           this.waiting = false;
         },
         (err) => {}

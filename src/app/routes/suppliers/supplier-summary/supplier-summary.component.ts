@@ -41,7 +41,6 @@ export class SupplierSummaryComponent implements OnInit {
 
   getData() {
     this.supplierservice.getAllSuppliers().subscribe((data) => {
-      console.log(data);
       this.suppliers = data;
     });
   }

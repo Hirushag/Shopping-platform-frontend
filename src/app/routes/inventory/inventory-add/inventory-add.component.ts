@@ -99,8 +99,6 @@ export class InventoryAddComponent implements OnInit {
     if (this.valForm.valid) {
       value.uniquekey = this.uniqueid;
 
-      console.log(value);
-
       if (value.quantity < 0) {
         swal("Error!", "Quantity is Not Valid", "warning");
         return;

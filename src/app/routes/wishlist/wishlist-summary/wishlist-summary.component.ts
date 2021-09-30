@@ -27,7 +27,6 @@ export class WishlistSummaryComponent implements OnInit {
 
   getData() {
     this.itemservice.getAllWishlist().subscribe((data) => {
-      console.log(data);
       this.wishlist = data;
     });
   }

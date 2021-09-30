@@ -57,13 +57,11 @@ export class CategorySummaryComponent implements OnInit {
       this.LoadUI = true;
     });
 
-
     //main category columns
     this.cols = [
       { field: "catname", header: "Category Name" },
       { field: "actions", header: "Actions" },
     ];
-
 
     //sub category columns
     this.xcols = [
@@ -76,7 +74,6 @@ export class CategorySummaryComponent implements OnInit {
     this.getAllSubCategories();
     this.generateuniquekey();
   }
-
 
   //get all categories
   getAllCategories() {
@@ -206,7 +203,6 @@ export class CategorySummaryComponent implements OnInit {
     );
   }
 
-
   //add category function
   submitForm($ev, value: any) {
     $ev.preventDefault();
@@ -256,7 +252,6 @@ export class CategorySummaryComponent implements OnInit {
     }
   }
 
-
   //show edit category modal
   editCategoryModalShow(data, modal) {
     this.edit_category_id = data.id;
@@ -273,7 +268,6 @@ export class CategorySummaryComponent implements OnInit {
 
     modal.show();
   }
-
 
   //add sub categories function
   submitForm2($ev, value: any) {
@@ -365,10 +359,8 @@ export class CategorySummaryComponent implements OnInit {
     );
   }
 
-
   //delete sub categories function
   deleteSubCategories(id) {
-    console.log(id);
     this.categoryService.deleteCategory({ id: id }).subscribe((data) => {
       if (data.status) {
         swal("Done!", "Inventory Deleted!", "success");
