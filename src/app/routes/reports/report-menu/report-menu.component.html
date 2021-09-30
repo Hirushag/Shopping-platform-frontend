@@ -27,11 +27,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="float-right">
-            <button
-              class="mb-2 btn btn-outline-primary"
-              type="button"
-              [routerLink]="['/home']"
-            >
+            <button class="mb-2 btn btn-outline-primary" type="button" [routerLink]="['/home']">
               Dashboard
             </button>
           </div>
@@ -43,21 +39,22 @@
           <!-- START card-->
 
           <div class="card card-default">
-            <div class="card-header"><h3>Reports</h3></div>
+            <div class="card-header">
+              <h3>Reports</h3>
+            </div>
             <div class="card-body">
               <ul>
                 <li>
-                  <a routerLink="/reports/inventory-report/report"
-                    >Inventory Report</a
-                  >
+                  <a routerLink="/reports/inventory-report/report">Inventory Report</a>
                 </li>
                 <li>
 
-                  <a routerLink="/reports/supplier-report/report"
+                  <a routerLink="/reports/supplier-report/report">Supplier Report</a>
 
-                    >Supplier Report</a
+                </li>
+                <li>
 
-                  >
+                  <a routerLink="/reports/payment-report/report">Payment Report</a>
 
                 </li>
               </ul>
