@@ -46,4 +46,22 @@ export class ReportService {
       catchError(this.handleError)
     );
   }
+
+  deliveryReport(data) {
+
+    const APIurl = this.BaseAPIurl.concat("delivery-report");
+
+    return this.http.post<any>(APIurl, data).pipe(
+
+      map((response) => {
+
+        return response;
+
+      }),
+
+      catchError(this.handleError)
+
+    );
+
+  }
 }
