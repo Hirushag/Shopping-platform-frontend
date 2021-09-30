@@ -1,0 +1,164 @@
+<div class="content-heading mb-2">Reports</div>
+
+<div class="row" *ngIf="LoadUI == false">
+  <div class="col-lg-12 no-gutters mt-5">
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <div class="ball-grid-pulse">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <h2 class="text-muted">Loading interfaces...</h2>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="LoadUI == true">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="float-right">
+        <button
+          class="mb-2 btn btn-outline-primary"
+          type="button"
+          [routerLink]="['/home']"
+        >
+          Dashboard
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="card card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="col-md-12"><h6>Supplier</h6></div>
+            <div class="col-md-12">
+              <p-dropdown
+                [options]="suppliers"
+                name="suppliers"
+                [(ngModel)]="selected_supplier"
+                [filter]="true"
+                [autoWidth]="true"
+                inputStyleClass="form-control"
+                styleClass="fw"
+                [style]="{ width: '100%' }"
+                inputStyle="{'width':'100%'}"
+                [resetFilterOnHide]="true"
+                [showClear]="true"
+                [autofocus]="true"
+                (ngModelChange)="GenerateReport()"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix">
+    <div class="row" *ngIf="inventory.length > 0">
+      <div class="col-sm-12 mb-2">
+        <div class="float-right">
+          <button
+            class="btn btn-success btn-lg mr-2"
+            type="button"
+            (click)="exportTabletoExcel('printreport', 'inventory_report')"
+          >
+            EXPORT EXCEL
+          </button>
+          <button
+            class="btn btn-success btn-lg"
+            type="button"
+            (click)="printreport()"
+          >
+            PRINT REPORT
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="inventory?.length > 0">
+    <div class="col-md-12">
+      <div class="card card-default" style="overflow-x: auto">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <b>Total Inventories </b>
+                      </td>
+                      <td class="text-right">
+                        {{ inventory?.length }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <b>Total Cost </b>
+                      </td>
+                      <td
+                        class="text-right"
+                        *ngFor="let items of inventory_cost"
+                      >
+                        {{ items?.total_cost }} LKR
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <br /><br />
+          <div class="table-responsive" id="printreport">
+            <table class="table table-bordered table-sm">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Product Code</th>
+                  <th>Product Name</th>
+                  <th>Category</th>
+                  <th>Supplier</th>
+                  <th>Company Address</th>
+                  <th>Cost Price</th>
+                  <th>Selling Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let records of inventory; let i = index"
+                  [ngClass]="{
+                    'badge-info':
+                      records?.student_tutor_fee == 0 &&
+                      records?.student_tutor_fee == 0
+                  }"
+                >
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ records?.productcode }}</td>
+                  <td>{{ records?.productname }}</td>
+                  <td>{{ records?.catname }}</td>
+                  <td>{{ records?.supplier_name }}</td>
+                  <td>{{ records?.company_address }}</td>
+                  <td>{{ records?.cost }} LKR</td>
+                  <td>{{ records?.sellingprice }} LKR</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
