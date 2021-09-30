@@ -52,19 +52,13 @@
                   >
                 </li>
                 <li>
-                  <a routerLink="/reports/timetableattendance/report"
-                    >Attendance Report By Time table</a
+
+                  <a routerLink="/reports/supplier-report/report"
+
+                    >Supplier Report</a
+
                   >
-                </li>
-                <li *ngIf="sysuser?.userlevel == 4 || sysuser?.userlevel >= 14">
-                  <a routerLink="/reports/weekly-attendance-count/report"
-                    >Weekly Attendance Count Report</a
-                  >
-                </li>
-                <li *ngIf="sysuser?.userlevel == 4 || sysuser?.userlevel >= 14">
-                  <a routerLink="/reports/students-monthly-attendance/report"
-                    >Student wise Monthly Attendance Report</a
-                  >
+
                 </li>
               </ul>
             </div>

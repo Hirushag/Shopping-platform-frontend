@@ -10,6 +10,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { TableModule } from "primeng/table";
 import { SharedModule } from "../../shared/shared.module";
 import { ReportMenuComponent } from "./report-menu/report-menu.component";
+import { SupplierReportComponent } from "./supplier-report/supplier-report.component";
 
 const routes: Routes = [
   // paths
@@ -17,6 +18,13 @@ const routes: Routes = [
   {
     path: "inventory-report/report",
     component: InventoryReportComponent,
+  },
+  {
+
+    path: "supplier-report/report",
+
+    component: SupplierReportComponent,
+
   },
 ];
 @NgModule({
@@ -31,7 +39,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CheckboxModule,
   ],
-  declarations: [InventoryReportComponent, ReportMenuComponent],
+  declarations: [InventoryReportComponent, SupplierReportComponent,ReportMenuComponent],
 
   exports: [RouterModule],
 })
