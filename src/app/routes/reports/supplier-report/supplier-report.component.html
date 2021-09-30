@@ -1,0 +1,146 @@
+<div class="content-heading mb-2">Supplier Reports</div>
+
+<div class="row" *ngIf="LoadUI == false">
+  <div class="col-lg-12 no-gutters mt-5">
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <div class="ball-grid-pulse">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div class="d-flex align-middle align-items-center justify-content-center">
+      <h2 class="text-muted">Loading interfaces...</h2>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="LoadUI == true">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="float-right">
+        <button
+          class="mb-2 btn btn-outline-primary"
+          type="button"
+          [routerLink]="['/home']"
+        >
+          Dashboard
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="card card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="col-md-12"><h6>Category</h6></div>
+            <div class="col-md-12">
+              <p-dropdown
+                [options]="categories"
+                name="categories"
+                [(ngModel)]="selected_category"
+                [filter]="true"
+                [autoWidth]="true"
+                inputStyleClass="form-control"
+                styleClass="fw"
+                [style]="{ width: '100%' }"
+                inputStyle="{'width':'100%'}"
+                [resetFilterOnHide]="true"
+                [showClear]="true"
+                [autofocus]="true"
+                (ngModelChange)="GenerateReport()"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix">
+    <div class="row" *ngIf="supplier?.length > 0">
+      <div class="col-sm-12 mb-2">
+        <div class="float-right">
+          <button
+            class="btn btn-success btn-lg mr-2"
+            type="button"
+            (click)="exportTabletoExcel('printreport', 'supplier_report')"
+          >
+            EXPORT EXCEL
+          </button>
+          <button
+            class="btn btn-success btn-lg"
+            type="button"
+            (click)="printreport()"
+          >
+            PRINT REPORT
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="supplier?.length > 0">
+    <div class="col-md-12">
+      <div class="card card-default" style="overflow-x: auto">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="table-responsive">
+                <table class="table table-bordered table-sm">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <b>Total Suppliers </b>
+                      </td>
+                      <td class="text-right">
+                        {{ supplier?.length }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <br /><br />
+          <div class="table-responsive" id="printrepo">
+            <table class="table table-bordered table-sm">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Supplier Code</th>
+                  <th>Supplier Name</th>
+                  <th>Supplier Address</th>
+                  <th>Supplier Mobile</th>
+                  <th>Category</th>
+                  <th>Created By</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let records of supplier; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ records?.suppliercode }}</td>
+                  <td>{{ records?.supplier_name }}</td>
+                  <td>
+                    {{ records?.company_address }}
+                  </td>
+                  <td>{{ records?.phone }}</td>
+                  <td>{{ records?.catname }}</td>
+                  <td>{{ records?.firstname }} {{ records?.lastname }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
