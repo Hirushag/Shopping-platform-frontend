@@ -60,6 +60,7 @@ export class InventoryReportComponent implements OnInit {
   exportTabletoExcel(tableID, filename) {
     var downloadLink;
     var dataType = "application/vnd.ms-excel";
+  //  var dataType = "application/pdf";
     var tableSelect = document.getElementById(tableID);
     $(tableSelect)
       .find("a")
@@ -94,6 +95,7 @@ export class InventoryReportComponent implements OnInit {
       FileSaver.saveAs(downloadLink.href, filename);
     }
     this.GenerateReport();
+     
   }
   printreport() {
     let printContents, popupWin;
