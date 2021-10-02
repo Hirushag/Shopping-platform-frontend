@@ -66,19 +66,19 @@
     <div class="row" *ngIf="payments?.length > 0">
       <div class="col-sm-12 mb-2">
         <div class="float-right">
-          <button
+          <!-- <button
             class="btn btn-success btn-lg mr-2"
             type="button"
             (click)="exportTabletoExcel('printreport', 'payment_report')"
           >
             EXPORT EXCEL
-          </button>
+          </button> -->
           <button
             class="btn btn-success btn-lg"
             type="button"
             (click)="printreport()"
           >
-            PRINT REPORT
+         SAVE AS PDF
           </button>
         </div>
       </div>
