@@ -1,3 +1,24 @@
+**Group ID**
+2021S2_REG_WE_01
+
+
+Project Name
+Easy shop E commerce System
+
+Group Details
+
+Hirusha K.A.G.          IT19034478     gaganahirusha
+Chathuranga S.J.        IT19043388      janith-ch
+Weragoda W.R.J.M.       IT19008424      Manee96
+Madushan W.A.           IT19042152      Ranjula29
+
+
+Development Technology
+
+Frontend - Angular
+Backend - Sails.js
+Database - MySql
+
 # Ng2angle
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.1.
